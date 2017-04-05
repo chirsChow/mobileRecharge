@@ -1,0 +1,42 @@
+<!-- 充值专区 -->
+<head-title ng-hide="hidePage" show-backbtn="true" go-back="goBack()" app-title="流量行家"></head-title>
+<div class="full-h oa">
+    <form id="form" name="form" class="form oa" novalidate>
+        <div class="mobile-input">
+            <input type="tel"
+                   ng-model="obj.mobile"
+                   placeholder="请输入手机号码" minlength="11" maxlength="11" required oninput="checkMobile(this,11)" />
+            <span ng-click="clearInput()">X</span>
+        </div>
+        <p style="margin: 0 0 10px 20px;">全国三网可充，到账立即生效</p>
+        <div class="mobile-detail">省内流量，7天生效<a class="href hidden" ui-sref="detailP">详情</a></div>
+        <div class="recharge-container">
+            <div class="recharge-item" ng-repeat="item in obj.dataP">
+                <input type="radio" id="{{'recharge-radio-p'+$index}}" name="recharge-radio-p" value="{{$index}}" ng-checked="{{!$index}}"/>
+                <label for="{{'recharge-radio-p'+$index}}" class="options"></label>
+                <div ng-bind="item.title"></div>
+                <div ng-bind="item.price | RMBPrefix"></div>
+            </div>
+        </div>
+        <div class="mobile-detail">全国流量，当月生效<a class="href hidden" ui-sref="detailG">详情</a></div>
+        <div class="recharge-container">
+            <div class="recharge-item" ng-repeat="item in obj.dataG">
+                <input type="radio" id="{{'recharge-radio-g'+$index}}" name="recharge-radio-g" value="{{$index}}" ng-checked="{{!$index}}"/>
+                <label for="{{'recharge-radio-g'+$index}}" class="options"></label>
+                <div ng-bind="item.title"></div>
+                <div ng-bind="item.price | RMBPrefix"></div>
+            </div>
+        </div>
+        <div class="gap tc">
+            <button class="btn btn-sub-red" ng-click="recharge()">
+                充值
+            </button>
+        </div>
+    </form>
+    <div style="display:flex;display: -webkit-flex;justify-content: center;align-items: flex-start;height: 40px;">
+        <!--<a ui-sref="rechargeList" class="href">充值记录</a>-->
+        <a ui-sref="tips" class="href">温馨提示</a>
+        &nbsp;|&nbsp;<a ui-sref="question" class="href">常见问题</a>
+    </div>
+</div>
+

@@ -1,0 +1,15 @@
+<head-title show-backbtn="true" go-back="goBack()" app-title="充值记录"></head-title>
+<!--充值记录列表-->
+<div class="full-h rel oa showList">
+    <div ng-repeat="item in list" class="list-item">
+        <div class="emphasis">{{item.voucherName+"-"+item.voucherId}}<span class="fr blue">{{item.useStatus}}</span></div>
+        <div>{{item.invalidDate}}</div>
+        <div class="blue"><span>￥</span><span style="font-size: 16px;">{{item.amt | AvaBalance}}</span></div>
+    </div>
+
+    <div ng-if="list.length==0 && finish" class="bg-default full-h"
+         style="display:flex;display: -webkit-flex;flex-direction: column;justify-content: center;align-items:center;">
+        <img style="width: 100px;height: 100px;" src="images/norecord_icon.png"/>
+        <h5 style="padding: 5px;">暂无充值记录</h5>
+    </div>
+</div>
