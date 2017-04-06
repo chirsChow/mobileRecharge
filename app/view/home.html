@@ -6,11 +6,29 @@
             <input type="tel"
                    ng-model="obj.mobile"
                    placeholder="请输入手机号码" minlength="11" maxlength="11" required oninput="checkMobile(this,11)" />
-            <span ng-click="clearInput()">X</span>
+            <span class="carrier-label">{{obj.carrier}}</span>
+            <span class="x-btn" ng-click="obj.mobile = '';obj.carrier = ''">X</span>
         </div>
         <p style="margin: 0 0 10px 20px;">全国三网可充，到账立即生效</p>
-        <div class="mobile-detail">省内流量，7天生效<a class="href hidden" ui-sref="detailP">详情</a></div>
-        <div class="recharge-container">
+        <div class="tab-container" ng-init="showP=true">
+            <div class="mobile-detail" ng-click="showP=true;showG=false;">
+                <input type="radio" id="tabP" name="tab-PG" value="p" ng-checked="true"/>
+                <label for="tabP" class="tab-options"></label>
+                <span>省内流量</span>
+                <i class="cross-icon icon-minus-down"></i>
+                <a class="href hidden" ui-sref="detailP">详情</a>
+            </div>
+            <i class="divider"></i>
+            <div class="mobile-detail" ng-click="showG=true;showP=false;">
+                <input type="radio" id="tabG" name="tab-PG" value="g"/>
+                <label for="tabG" class="tab-options"></label>
+                <span>全国流量</span>
+                <i class="cross-icon icon-minus-down"></i>
+                <a class="href hidden" ui-sref="detailG">详情</a>
+            </div>
+        </div>
+        <!--省内流量-->
+        <div ng-if="showP" class="recharge-container">
             <div class="recharge-item" ng-repeat="item in obj.dataP">
                 <input type="radio" id="{{'recharge-radio-p'+$index}}" name="recharge-radio-p" value="{{$index}}" ng-checked="{{!$index}}"/>
                 <label for="{{'recharge-radio-p'+$index}}" class="options"></label>
@@ -18,8 +36,8 @@
                 <div ng-bind="item.price | RMBPrefix"></div>
             </div>
         </div>
-        <div class="mobile-detail">全国流量，当月生效<a class="href hidden" ui-sref="detailG">详情</a></div>
-        <div class="recharge-container">
+        <!--国内流量-->
+        <div ng-if="showG" class="recharge-container">
             <div class="recharge-item" ng-repeat="item in obj.dataG">
                 <input type="radio" id="{{'recharge-radio-g'+$index}}" name="recharge-radio-g" value="{{$index}}" ng-checked="{{!$index}}"/>
                 <label for="{{'recharge-radio-g'+$index}}" class="options"></label>

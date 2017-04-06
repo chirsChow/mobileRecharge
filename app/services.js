@@ -268,20 +268,23 @@ define(function (require) {
             }
         };
     }])
+    //充值历史记录列表
     .service('rechargeListService', ['$http', function ($http) {
         return {
-            get: function (page, pageSize) {
+            get: function (page, pageSize, phone) {
                 return $http({
                     method: 'POST',
                     data: {
                         page: page,
                         pageSize: pageSize,
+                        phone: phone
                     },
-                    url: "/list"
+                    url: "/front/getHistory"
                 });
             }
         };
     }])
+    //根据手机号获取流量类型数据，没有手机号则返回默认数据
     .service('InitInfo', ['$http', function ($http) {
         return {
             get: function (params) {
@@ -292,7 +295,27 @@ define(function (require) {
                         subSource: params.subSource,
                         phone: params.phone
                     },
-                    url: "/api/getInitInfoForFlowNew"
+                    url: "/flow_receive/getInitInfoForFlowNew"
+                });
+            }
+        };
+    }])
+    //创建订单【返回内容】跳转到支付页面，支付后返回到结果页面
+    .service('CreateOrder', ['$http', function ($http) {
+        return {
+            create: function (params) {
+                return $http({
+                    method: 'POST',
+                    data: {
+                        clientSource: params.clientSource,
+                        subSource: params.subSource,
+                        phone: params.phone,
+                        itemId: params.itemId,	//产品编号	String	M	基础价格ID
+                        itemPrice: params.itemPrice,	//产品价格	Float	M	如3.75，表示3.75元
+                        face: params.face,	//产品名称	String	M	如30M,1G
+                        resultUrl: params.resultUrl	//充值完成后跳转URL	String	O	跳转时会带上orderId参数
+                    },
+                    url: "/createOrderForFlow"
                 });
             }
         };

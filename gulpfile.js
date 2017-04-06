@@ -19,10 +19,11 @@ var config = {
 	//proxyUrl:'http://10.118.200.154:8081'//李顺
 	//proxyUrl:'http://10.118.200.27:8081'//胡正强
 	//proxyUrl:'http://10.118.192.186:9000'//王小平
-	proxyUrl:'http://rap.taobao.org/'
+	//proxyUrl:'http://rap.taobao.org/'
+	proxyUrl:'http://flowpay.mmflow.cn:9000'
 };
 
-var context = '/api'; // requests with this path will be proxied
+var context = '/flow_receive'; // requests with this path will be proxied
 
 // configure proxy middleware options
 var options = {
@@ -30,7 +31,8 @@ var options = {
 	// changeOrigin: true,      // needed for virtual hosted sites
 	// ws: true,                // proxy websockets
 	pathRewrite: {
-		'/api' : '/mockjsdata/16508/'
+		//'/api' : '/mockjsdata/16508/'
+		'/flow_receive': '/flow_receive'
 	}
 };
 

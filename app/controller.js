@@ -7,7 +7,7 @@ define(function (require) {
     require('./directive');
     require('./utils');
 
-    //ÊÖ»ú³äÖµ×¨Çø
+    //æ‰‹æœºå……å€¼ä¸“åŒº
     app.controller('homeCtrl', ['$scope', '$rootScope', '$state', 'utils', function ($scope, $rootScope, $state, utils) {
         $scope.goBack = function () {
             //app.get('closeWindow')();
@@ -17,52 +17,62 @@ define(function (require) {
         };
         $scope.obj = {
             mobile: '',
-            dataP: [],//Ê¡ÄÚÁ÷Á¿³äÖµÀàĞÍ
-            dataG: [],//È«¹úÄÚÁ÷Á¿³äÖµÀàĞÍ
+            carrier:'',//æ˜¾ç¤ºæ‰‹æœºå·è¿è¥å•†ï¼ˆä¸­å›½ç§»åŠ¨ï¼‰
+            dataP: [],//çœå†…æµé‡å……å€¼ç±»å‹
+            dataG: [],//å…¨å›½å†…æµé‡å……å€¼ç±»å‹
         };
 
-        //Ê¡ÄÚÁ÷Á¿³äÖµÀàĞÍ
-        function loadP(carrieroperator) {
-            if (!carrieroperator || carrieroperator == '') {
-                carrieroperator = 'ChinaMobile';
-            }
-            $scope.obj.dataP = app.get("rechargeTypeService").get(carrieroperator, 'P');
-        }
+        var parse = utils.urlparse();
+        var clientSource = parse['clientSource'];//æ¸ é“æ¥æº
+        var subSource = parse['subSource'];//æ¸ é“å­ç¼–å·
 
-        //È«¹úÁ÷Á¿³äÖµÀàĞÍ
-        function loadG(carrieroperator) {
-            if (!carrieroperator || carrieroperator == '') {
-                carrieroperator = 'ChinaMobile';
-            }
-            $scope.obj.dataG = app.get("rechargeTypeService").get(carrieroperator, 'G');
-        }
-
-        loadP();
-        loadG();
-
-        $scope.clearInput = function () {
-            $scope.obj.mobile = '';
-        };
-        //Ìá½»³äÖµ
+        //æäº¤å……å€¼
         $scope.recharge = function () {
             var _mobile = $scope.obj.mobile;
             if (!_mobile || _mobile == '') {
-                utils.toast('ÇëÊäÈëÊÖ»úºÅÂë');
+                utils.toast('è¯·è¾“å…¥æ‰‹æœºå·ç ');
                 return;
             }
+            //çœå†…æµé‡
             var radiosP = document.getElementsByName('recharge-radio-p');
             for (var i = 0; i < radiosP.length; i++) {
                 if (radiosP[i].checked) {
-                    console.log(radiosP[i].value);
+                    createOrder($scope.obj.dataP[radiosP[i].value]);
                 }
             }
+            //å›½å†…æµé‡
             var radiosG = document.getElementsByName('recharge-radio-g');
-            for (var i = 0; i < radiosG.length; i++) {
-                if (radiosG[i].checked) {
-                    console.log(radiosG[i].value);
+            for (var j = 0; j < radiosG.length; j++) {
+                if (radiosG[j].checked) {
+                    createOrder($scope.obj.dataG[radiosG[j].value]);
                 }
             }
         };
+        //å‰ç«¯å‘æµé‡å¹³å°å‘èµ·è¯·æ±‚
+        function createOrder(item) {
+            $rootScope.loading = true;
+            //è¯·æ±‚å‚æ•°
+            var params = {
+                clientSource: clientSource,
+                subSource: subSource,
+                phone: $scope.obj.mobile,
+                itemId: item.itemId,	//äº§å“ç¼–å·	String	M	åŸºç¡€ä»·æ ¼ID
+                itemPrice: item.itemPrice,	//äº§å“ä»·æ ¼	Float	M	å¦‚3.75ï¼Œè¡¨ç¤º3.75å…ƒ
+                face: item.face,	//äº§å“åç§°	String	M	å¦‚30M,1G
+                resultUrl: ''	//å……å€¼å®Œæˆåè·³è½¬URL	String	O	è·³è½¬æ—¶ä¼šå¸¦ä¸ŠorderIdå‚æ•°
+            };
+            app.get("CreateOrder").create(params).success(function (response) {
+                $rootScope.loading = false;
+                if (response.isSuccess) {
+                    console.log(response);
+
+                } else {
+                    utils.toast(response.retMsg);
+                }
+            }).error(function () {
+                $state.go('error');
+            });
+        }
 
         window.checkMobile = function (obj, length) {
             if (/[^\d]/.test(obj.value)) {
@@ -71,23 +81,26 @@ define(function (require) {
             if (obj.value.length > length) {
                 obj.value = obj.value.substr(0, length);
             }
-            var t = utils.checkMobile(obj.value);
-            loadP(t.name);
-            loadG(t.name);
+            if (obj.value.length == 11) {
+                //getInitInfo();
+            }
         };
-
-        //½â¾öÒ»¼ÓÊÖ»úÔÚË³ÊÖ¸¶´ò¿ªH5Ê±µÚÒ»´Î²»ÄÜ¼ÓÔØÍê³ÉµÄÎÊÌâ
-        if (utils.browser().onePlus && !sessionStorage.getItem('onceReload')) {
-            window.location.reload();
-            sessionStorage.setItem('onceReload', true);
-        }
 
         function getInitInfo() {
             $rootScope.loading = true;
-            app.get("InitInfo").get({}).success(function (response) {
+            //è¯·æ±‚å‚æ•°
+            var params = {
+                clientSource: clientSource,
+                subSource: subSource,
+                phone: $scope.obj.mobile
+            };
+            app.get("InitInfo").get(params).success(function (response) {
                 $rootScope.loading = false;
-                if (response.isSuccess == 'true') {
+                if (response.isSuccess) {
                     console.log(response);
+                    $scope.obj.carrier = $scope.obj.mobile == ''?'':response.carrier;
+                    $scope.obj.dataP = response.itemListP;
+                    $scope.obj.dataG = response.itemListG;
                 } else {
                     utils.toast(response.retMsg);
                 }
@@ -95,109 +108,131 @@ define(function (require) {
                 $state.go('error');
             });
         }
-        getInitInfo();
-    }])
-    //³£¼ûÎÊÌâ
-    .controller('questionCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-        $scope.goBack = function () {
-            window.history.back();
-        };
-        window.onBack = function () {
-            $scope.goBack();
-        };
-
-        $rootScope.loading = false;
-
-    }])
-    //ÎÂÜ°ÌáÊ¾
-    .controller('tipsCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-        $scope.goBack = function () {
-            window.history.back();
-        };
-        window.onBack = function () {
-            $scope.goBack();
-        };
-
-        $rootScope.loading = false;
-
-    }])
-    //¹úÄÚÁ÷Á¿-ÏêÇé
-    .controller('detailGCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-        $scope.goBack = function () {
-            window.history.back();
-        };
-        window.onBack = function () {
-            $scope.goBack();
-        };
-
-        $rootScope.loading = false;
-
-    }])
-    //Ê¡ÄÚÁ÷Á¿-ÏêÇé
-    .controller('detailPCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-        $scope.goBack = function () {
-            window.history.back();
-        };
-        window.onBack = function () {
-            $scope.goBack();
-        };
-
-        $rootScope.loading = false;
-
-    }])
-    //´íÎóÒ³Ãæ
-    .controller('errorCtrl', ['$scope', '$rootScope', 'utils', function ($scope, $rootScope, utils) {
-        $scope.goBack = function () {
-            //app.get('closeWindow')();
-        };
-        window.onBack = function () {
-            $scope.goBack();
-        };
-
-        $rootScope.loading = false;
-
-    }])
-    //³äÖµ¼ÇÂ¼ÁĞ±í
-    .controller('listCtrl', ['$scope', '$rootScope', '$state', 'utils', function ($scope, $rootScope, $state, utils) {
-        $scope.goBack = function () {
-            window.history.back();
-        };
-        window.onBack = function () {
-            $scope.goBack();
-        };
-
-        $scope.list = [];
-
-        $scope.finish = false;
-        var page = 1;
-        var pageSize = 10;
-        getList(page, pageSize);
-        document.querySelector('.showList').addEventListener('scroll', function () {
-            if (this.scrollHeight - this.clientHeight - this.scrollTop < 70 && $scope.finish) {
-                page++;
-                getList(page, pageSize);
+        //getInitInfo();
+        //çœå†…æµé‡å……å€¼ç±»å‹
+        function loadP(carrieroperator) {
+            if (!carrieroperator || carrieroperator == '') {
+                carrieroperator = 'ChinaMobile';
             }
-        });
-
-        function getList(page, pageSize) {
-            $scope.finish = false;
-            $rootScope.loading = true;
-            app.get("rechargeListService").get(page, pageSize).success(function (response) {
-                $rootScope.loading = false;
-                utils.toast(response.returnMsg);
-                if (response.resultCode == '00') {
-                    if (response.data.length > 0) {
-                        $scope.list = $scope.list.concat(response.data);
-                    }
-                    $scope.finish = true;
-                } else {
-                    $state.go('error');
-                }
-            }).error(function () {
-                $state.go('error');
-            });
+            $scope.obj.dataP = app.get("rechargeTypeService").get(carrieroperator, 'P');
         }
 
-    }]);
+        //å…¨å›½æµé‡å……å€¼ç±»å‹
+        function loadG(carrieroperator) {
+            if (!carrieroperator || carrieroperator == '') {
+                carrieroperator = 'ChinaMobile';
+            }
+            $scope.obj.dataG = app.get("rechargeTypeService").get(carrieroperator, 'G');
+        }
+        loadP();
+        loadG();
+        //è§£å†³ä¸€åŠ æ‰‹æœºåœ¨é¡ºæ‰‹ä»˜æ‰“å¼€H5æ—¶ç¬¬ä¸€æ¬¡ä¸èƒ½åŠ è½½å®Œæˆçš„é—®é¢˜
+        if (utils.browser().onePlus && !sessionStorage.getItem('onceReload')) {
+            window.location.reload();
+            sessionStorage.setItem('onceReload', true);
+        }
+    }])
+        //å¸¸è§é—®é¢˜
+        .controller('questionCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+            $scope.goBack = function () {
+                window.history.back();
+            };
+            window.onBack = function () {
+                $scope.goBack();
+            };
+
+            $rootScope.loading = false;
+
+        }])
+        //æ¸©é¦¨æç¤º
+        .controller('tipsCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+            $scope.goBack = function () {
+                window.history.back();
+            };
+            window.onBack = function () {
+                $scope.goBack();
+            };
+
+            $rootScope.loading = false;
+
+        }])
+        //å›½å†…æµé‡-è¯¦æƒ…
+        .controller('detailGCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+            $scope.goBack = function () {
+                window.history.back();
+            };
+            window.onBack = function () {
+                $scope.goBack();
+            };
+
+            $rootScope.loading = false;
+
+        }])
+        //çœå†…æµé‡-è¯¦æƒ…
+        .controller('detailPCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+            $scope.goBack = function () {
+                window.history.back();
+            };
+            window.onBack = function () {
+                $scope.goBack();
+            };
+
+            $rootScope.loading = false;
+
+        }])
+        //é”™è¯¯é¡µé¢
+        .controller('errorCtrl', ['$scope', '$rootScope', 'utils', function ($scope, $rootScope, utils) {
+            $scope.goBack = function () {
+                //app.get('closeWindow')();
+            };
+            window.onBack = function () {
+                $scope.goBack();
+            };
+
+            $rootScope.loading = false;
+
+        }])
+        //å……å€¼è®°å½•åˆ—è¡¨
+        .controller('listCtrl', ['$scope', '$rootScope', '$state', 'utils', function ($scope, $rootScope, $state, utils) {
+            $scope.goBack = function () {
+                window.history.back();
+            };
+            window.onBack = function () {
+                $scope.goBack();
+            };
+
+            $scope.list = [];
+
+            $scope.finish = false;
+            var page = 1;
+            var pageSize = 10;
+            getList(page, pageSize);
+            document.querySelector('.showList').addEventListener('scroll', function () {
+                if (this.scrollHeight - this.clientHeight - this.scrollTop < 70 && $scope.finish) {
+                    page++;
+                    getList(page, pageSize);
+                }
+            });
+
+            function getList(page, pageSize) {
+                $scope.finish = false;
+                $rootScope.loading = true;
+                app.get("rechargeListService").get(page, pageSize).success(function (response) {
+                    $rootScope.loading = false;
+                    utils.toast(response.returnMsg);
+                    if (response.resultCode == '00') {
+                        if (response.data.length > 0) {
+                            $scope.list = $scope.list.concat(response.data);
+                        }
+                        $scope.finish = true;
+                    } else {
+                        $state.go('error');
+                    }
+                }).error(function () {
+                    $state.go('error');
+                });
+            }
+
+        }]);
 });
 
