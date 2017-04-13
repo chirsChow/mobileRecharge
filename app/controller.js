@@ -25,7 +25,7 @@ define(function (require) {
         var parse = utils.urlparse();
         var clientSource = parse['clientSource'];//渠道来源
         var subSource = parse['subSource'];//渠道子编号
-
+        
         //提交充值
         $scope.recharge = function () {
             var _mobile = $scope.obj.mobile;
@@ -59,13 +59,13 @@ define(function (require) {
                 itemId: item.itemId,	//产品编号	String	M	基础价格ID
                 itemPrice: item.itemPrice,	//产品价格	Float	M	如3.75，表示3.75元
                 face: item.face,	//产品名称	String	M	如30M,1G
-                resultUrl: ''	//充值完成后跳转URL	String	O	跳转时会带上orderId参数
+                resultUrl: location.href	//充值完成后跳转URL	String	O	跳转时会带上orderId参数
             };
             app.get("CreateOrder").create(params).success(function (response) {
                 $rootScope.loading = false;
                 if (response.isSuccess) {
                     console.log(response);
-
+                    window.location.href = "http://www.baidu.com";
                 } else {
                     utils.toast(response.retMsg);
                 }
@@ -81,8 +81,11 @@ define(function (require) {
             if (obj.value.length > length) {
                 obj.value = obj.value.substr(0, length);
             }
+            if (obj.value.length < 3) {
+                $scope.obj.carrier = '';
+            }
             if (obj.value.length == 11) {
-                //getInitInfo();
+                getInitInfo();
             }
         };
 
@@ -108,24 +111,24 @@ define(function (require) {
                 $state.go('error');
             });
         }
-        //getInitInfo();
-        //省内流量充值类型
-        function loadP(carrieroperator) {
-            if (!carrieroperator || carrieroperator == '') {
-                carrieroperator = 'ChinaMobile';
-            }
-            $scope.obj.dataP = app.get("rechargeTypeService").get(carrieroperator, 'P');
-        }
-
-        //全国流量充值类型
-        function loadG(carrieroperator) {
-            if (!carrieroperator || carrieroperator == '') {
-                carrieroperator = 'ChinaMobile';
-            }
-            $scope.obj.dataG = app.get("rechargeTypeService").get(carrieroperator, 'G');
-        }
-        loadP();
-        loadG();
+        getInitInfo();
+        ////省内流量充值类型
+        //function loadP(carrieroperator) {
+        //    if (!carrieroperator || carrieroperator == '') {
+        //        carrieroperator = 'ChinaMobile';
+        //    }
+        //    $scope.obj.dataP = app.get("rechargeTypeService").get(carrieroperator, 'P');
+        //}
+        //
+        ////全国流量充值类型
+        //function loadG(carrieroperator) {
+        //    if (!carrieroperator || carrieroperator == '') {
+        //        carrieroperator = 'ChinaMobile';
+        //    }
+        //    $scope.obj.dataG = app.get("rechargeTypeService").get(carrieroperator, 'G');
+        //}
+        //loadP();
+        //loadG();
         //解决一加手机在顺手付打开H5时第一次不能加载完成的问题
         if (utils.browser().onePlus && !sessionStorage.getItem('onceReload')) {
             window.location.reload();

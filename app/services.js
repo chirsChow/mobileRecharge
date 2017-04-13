@@ -313,9 +313,27 @@ define(function (require) {
                         itemId: params.itemId,	//产品编号	String	M	基础价格ID
                         itemPrice: params.itemPrice,	//产品价格	Float	M	如3.75，表示3.75元
                         face: params.face,	//产品名称	String	M	如30M,1G
-                        resultUrl: params.resultUrl	//充值完成后跳转URL	String	O	跳转时会带上orderId参数
+                        resultUrl: params.resultUrl,	//充值完成后跳转URL	String	O	跳转时会带上orderId参数
+
+                        type: params.type,//流量使用范围限制
+                        areaLimit: params.areaLimit,//充值地限制
+                        timeLimit: params.timeLimit//充值时间限制
                     },
                     url: "/createOrderForFlow"
+                });
+            }
+        };
+    }])
+    //获取订单信息
+    .service('OrderInfo', ['$http', function ($http) {
+        return {
+            get: function (orderId) {
+                return $http({
+                    method: 'POST',
+                    data: {
+                        orderId: orderId
+                    },
+                    url: "/front/orderInfo"
                 });
             }
         };

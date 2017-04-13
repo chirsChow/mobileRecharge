@@ -19,7 +19,7 @@ define(['require', 'app'], function (require, app) {
                         iPad: u.indexOf('iPad') > -1,
                         webApp: u.indexOf('Safari') == -1,
                         weChat: u.indexOf('MicroMessenger') > -1,
-                        aliPay: u.indexOf('AlipayDefined') > -1,
+                        aliPay: u.indexOf('AlipayDefisned') > -1,
                         onePlus: u.indexOf('A0001') > -1 || u.indexOf('A1001') > -1,
                         meiZu: u.indexOf('M351') > -1 || u.indexOf('M353') > -1,
                         sfPay: u.indexOf('[SF-V') > -1,//是顺手付浏览器

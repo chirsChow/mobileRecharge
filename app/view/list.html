@@ -2,9 +2,9 @@
 <!--充值记录列表-->
 <div class="full-h rel oa showList">
     <div ng-repeat="item in list" class="list-item">
-        <div class="emphasis">{{item.voucherName+"-"+item.voucherId}}<span class="fr blue">{{item.useStatus}}</span></div>
-        <div>{{item.invalidDate}}</div>
-        <div class="blue"><span>￥</span><span style="font-size: 16px;">{{item.amt | AvaBalance}}</span></div>
+        <div class="emphasis">{{item.flowSize}}<span class="fr blue">{{item.status}}</span></div>
+        <div>{{item.createDate}}</div>
+        <div class="blue"><span>￥</span><span style="font-size: 16px;">{{item.payMoney | AvaBalance}}</span></div>
     </div>
 
     <div ng-if="list.length==0 && finish" class="bg-default full-h"
