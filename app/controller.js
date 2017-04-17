@@ -18,37 +18,43 @@ define(function (require) {
         $scope.obj = {
             mobile: '',
             carrier:'',//显示手机号运营商（中国移动）
-            dataP: {}//选中的流量充值
+            model:'',
+            selectedItem: []//选中的流量充值
         };
 
         var parse = utils.urlparse();
         var clientSource = parse['clientSource'];//渠道来源
         var subSource = parse['subSource'];//渠道子编号
+
+        $scope.select = function (item) {
+            $scope.obj.selectedItem = item;
+            if ($scope.obj.selectedItem[0]) {
+                var desc0 = $scope.obj.selectedItem[0].simpleDesc;
+                $scope.obj.selectedItem[0].simpleDesc = eval("'" + desc0 + "'");
+            }
+            if ($scope.obj.selectedItem[1]) {
+                var desc1 = $scope.obj.selectedItem[1].simpleDesc;
+                $scope.obj.selectedItem[1].simpleDesc = eval("'" + desc1 + "'");
+            }
+        };
         
         //提交充值
-        $scope.recharge = function () {
+        $scope.recharge = function (type) {
             var _mobile = $scope.obj.mobile;
             if (!_mobile || _mobile == '') {
                 utils.toast('请输入手机号码');
                 return;
             }
-            //省内流量
-            var radiosP = document.getElementsByName('recharge-radio-p');
-            for (var i = 0; i < radiosP.length; i++) {
-                if (radiosP[i].checked) {
-                    createOrder($scope.obj.dataP[radiosP[i].value]);
-                }
-            }
-            //国内流量
-            var radiosG = document.getElementsByName('recharge-radio-g');
-            for (var j = 0; j < radiosG.length; j++) {
-                if (radiosG[j].checked) {
-                    createOrder($scope.obj.dataG[radiosG[j].value]);
+            for (var i = 0; i < $scope.obj.selectedItem.length; i++) {
+                if (type === $scope.obj.selectedItem[i].type) {
+                    createOrder($scope.obj.selectedItem[i]);
+                    break;
                 }
             }
         };
         //前端向流量平台发起请求
         function createOrder(item) {
+            console.log(item);
             $rootScope.loading = true;
             //请求参数
             var params = {
@@ -56,7 +62,7 @@ define(function (require) {
                 subSource: subSource,
                 phone: $scope.obj.mobile,
                 itemId: item.itemId,	//产品编号	String	M	基础价格ID
-                itemPrice: item.itemPrice,	//产品价格	Float	M	如3.75，表示3.75元
+                price: item.price,	//产品价格	Float	M	如3.75，表示3.75元
                 face: item.face,	//产品名称	String	M	如30M,1G
                 resultUrl: location.href	//充值完成后跳转URL	String	O	跳转时会带上orderId参数
             };
@@ -105,8 +111,10 @@ define(function (require) {
                     console.log(response);
                     $scope.obj.carrier = $scope.obj.mobile == ''?'':response.carrier;
                     $scope.obj.itemList = response.itemList;
-                    $scope.obj.dataP = response.itemList[0][0];
-                    $scope.obj.dataG = response.itemList[0][1];
+                    for(var i in response.itemList){
+                        $scope.select(response.itemList[i]);
+                        break;
+                    }
                 } else {
                     utils.toast(response.retMsg);
                 }

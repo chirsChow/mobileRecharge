@@ -12,27 +12,27 @@
         <!--流量项-->
         <div class="recharge-container">
             <div class="recharge-item" ng-repeat="item in obj.itemList">
-                <input type="radio" id="{{'recharge-radio-p'+$index}}" name="recharge-radio-p" value="{{$index}}" ng-checked="{{!$index}}"/>
+                <input type="radio" id="{{'recharge-radio-p'+$index}}" name="recharge-radio-p" value="{{$index}}" ng-checked="{{!$index}}" ng-model="obj.model" ng-change="select(item)"/>
                 <label for="{{'recharge-radio-p'+$index}}" class="options"></label>
                 <div ng-bind="item[0].face"></div>
                 <div ng-bind="item[0].price | RMBPrefix"></div>
             </div>
         </div>
-        <div class="recharge-btn-container">
+        <div ng-if="obj.selectedItem[0]" class="recharge-btn-container">
             <div class="recharge-btn-container-left">
-                <span class="recharge-amt">22.5元</span><i>本地</i>
-                <div class="recharge-desc">本地可用，即时生效，当月有效，每月限充10次，<span style="color: #ff0000;">平台送3元流量券</span></div>
+                <span class="recharge-amt">{{obj.selectedItem[0].price}}元</span><i>{{obj.selectedItem[0].type == 1?'本地':'全国'}}</i>
+                <div class="recharge-desc">{{obj.selectedItem[0].simpleDesc}}，<span style="color: #ff0000;">平台送3元流量券</span></div>
             </div>
-            <button class="btn btn-recharge" ng-click="recharge('P')">
+            <button class="btn btn-recharge" ng-click="recharge(obj.selectedItem[0].type)">
                 购买
             </button>
         </div>
-        <div class="recharge-btn-container">
+        <div ng-if="obj.selectedItem[1]" class="recharge-btn-container">
             <div class="recharge-btn-container-left">
-                <span class="recharge-amt">22.5元</span><i>全国</i>
-                <div class="recharge-desc">全国可用，即时生效，当月有效，<span style="color: #ff0000;">平台送3元流量券</span></div>
+                <span class="recharge-amt">{{obj.selectedItem[1].price}}元</span><i>{{obj.selectedItem[1].type == 1?'本地':'全国'}}</i>
+                <div class="recharge-desc">{{obj.selectedItem[1].simpleDesc}}，<span style="color: #ff0000;">平台送3元流量券</span></div>
             </div>
-            <button class="btn btn-recharge" ng-click="recharge('G')">
+            <button class="btn btn-recharge" ng-click="recharge(obj.selectedItem[1].type)">
                 购买
             </button>
         </div>
