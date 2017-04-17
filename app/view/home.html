@@ -18,21 +18,12 @@
                 <div ng-bind="item[0].price | RMBPrefix"></div>
             </div>
         </div>
-        <div ng-if="obj.selectedItem[0]" class="recharge-btn-container">
+        <div ng-repeat="o in obj.selectedItem" class="recharge-btn-container">
             <div class="recharge-btn-container-left">
-                <span class="recharge-amt">{{obj.selectedItem[0].price}}元</span><i>{{obj.selectedItem[0].type == 1?'本地':'全国'}}</i>
-                <div class="recharge-desc">{{obj.selectedItem[0].simpleDesc}}，<span style="color: #ff0000;">平台送3元流量券</span></div>
+                <span class="recharge-amt">{{o.price}}元</span><i>{{o.type == 1?'本地':'全国'}}</i>
+                <div class="recharge-desc">{{o.simpleDesc}}，<span style="color: #ff0000;">平台送3元流量券</span></div>
             </div>
-            <button class="btn btn-recharge" ng-click="recharge(obj.selectedItem[0].type)">
-                购买
-            </button>
-        </div>
-        <div ng-if="obj.selectedItem[1]" class="recharge-btn-container">
-            <div class="recharge-btn-container-left">
-                <span class="recharge-amt">{{obj.selectedItem[1].price}}元</span><i>{{obj.selectedItem[1].type == 1?'本地':'全国'}}</i>
-                <div class="recharge-desc">{{obj.selectedItem[1].simpleDesc}}，<span style="color: #ff0000;">平台送3元流量券</span></div>
-            </div>
-            <button class="btn btn-recharge" ng-click="recharge(obj.selectedItem[1].type)">
+            <button class="btn btn-recharge" ng-click="recharge(o.type)">
                 购买
             </button>
         </div>
