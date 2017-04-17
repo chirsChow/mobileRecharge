@@ -89,40 +89,39 @@ define(function (require) {
             if (obj.value.length < 3) {
                 $scope.obj.carrier = '';
             }
-            if (obj.value.length == 11) {
-                getInitInfo();
-            }
         };
 
-        function getInitInfo() {
-            $rootScope.loading = true;
-            //请求参数
-            var params = {
-                clientSource: clientSource,
-                subSource: subSource,
-                phone: $scope.obj.mobile||'13926585624'
-            };
-            app.get("InitInfo").get(params).success(function (response) {
-                $rootScope.loading = false;
-                if (response.isSuccess) {
-                    console.log(response);
-                    $scope.obj.carrier = $scope.obj.mobile == ''?'':response.carrier;
-                    $scope.obj.itemList = response.itemList;
-                    if ($scope.obj.selectedItem) {
-                        return;
+        $scope.getInitInfo = function () {
+            if ($scope.obj.mobile == '' || $scope.obj.mobile.length === 11) {
+                $rootScope.loading = true;
+                //请求参数
+                var params = {
+                    clientSource: clientSource,
+                    subSource: subSource,
+                    phone: $scope.obj.mobile || '13926585624'
+                };
+                app.get("InitInfo").get(params).success(function (response) {
+                    $rootScope.loading = false;
+                    if (response.isSuccess) {
+                        console.log(response);
+                        $scope.obj.carrier = $scope.obj.mobile == '' ? '' : response.carrier;
+                        $scope.obj.itemList = response.itemList;
+                        if ($scope.obj.selectedItem) {
+                            return;
+                        }
+                        for (var i in response.itemList) {
+                            $scope.select(response.itemList[i]);
+                            break;
+                        }
+                    } else {
+                        utils.toast(response.retMsg);
                     }
-                    for (var i in response.itemList) {
-                        $scope.select(response.itemList[i]);
-                        break;
-                    }
-                } else {
-                    utils.toast(response.retMsg);
-                }
-            }).error(function () {
-                $state.go('error');
-            });
-        }
-        getInitInfo();
+                }).error(function () {
+                    $state.go('error');
+                });
+            }
+        };
+        $scope.getInitInfo();
         //省内流量充值类型
         function loadP(carrieroperator) {
             if (!carrieroperator || carrieroperator == '') {

@@ -5,7 +5,7 @@
         <div class="mobile-input">
             <input type="tel"
                    ng-model="obj.mobile"
-                   placeholder="请输入手机号码" minlength="11" maxlength="11" required oninput="checkMobile(this,11)" />
+                   placeholder="请输入手机号码" required oninput="checkMobile(this,11)" ng-change="getInitInfo()" />
             <span class="carrier-label">{{obj.carrier}}</span>
             <span class="x-btn" ng-click="obj.mobile = '';obj.carrier = ''">X</span>
         </div>
