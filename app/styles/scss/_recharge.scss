@@ -3,26 +3,24 @@
   width: 100%;
   text-align: center;
   input {
-    width: 90%;
+    width: 100%;
     height: 50px;
     line-height: 50px;
-    border-radius: 4px;
-    padding: 5px 0 5px 10px;
-    margin: 10px;
-    border: 1px solid $mobileRecharge;
-    font-size: 18px;
+    padding: 6%;
+    font-size: 24px;
     color: #000;
+    border-bottom: 1px solid #ececec;
   }
   .carrier-label {
     position: absolute;
     right: 60px;
-    top: 16px;
+    top: 8px;
     color: #999;
   }
   .x-btn {
     position: absolute;
-    right: 30px;
-    top: 24px;
+    right: 15px;
+    top: 15px;
     background: #ccc;
     width: 20px;
     height: 20px;
@@ -109,6 +107,7 @@
   margin: 0 auto;
   justify-content: flex-start;
   align-items: center;
+  padding-bottom: 10px;
   .recharge-item{
     width: 28%;
     height: 60px;
@@ -148,8 +147,41 @@
   }
 }
 
-.btn-sub-red {
-  width: 90%;
+.recharge-btn-container{
+  @include display-flex;
+  @include flex-direction(row);
+  @include align-items(center);
+  border-top: 1px solid #ececec;
+  padding: 15px;
+  .recharge-btn-container-left{
+    @include flex(1);
+    i{
+      background-color: $mobileRecharge;
+      color: #ffffff;
+      padding: 2px 4px;
+      font-size: 10px;
+      margin-left: 5px;
+      @include border-radius(2px);
+    }
+    .recharge-amt{
+      font-size: 20px;
+      color: #000;
+      position: relative;
+      top:2px;
+    }
+    .recharge-desc{
+      line-height: 20px;
+    }
+  }
+}
+
+
+.btn-recharge {
+  width: 60px;
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+  margin: 2px;
   color: $mobileRecharge;
   @include border-radius(5px);
   border:1px solid $mobileRecharge;

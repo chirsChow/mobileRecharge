@@ -9,45 +9,31 @@
             <span class="carrier-label">{{obj.carrier}}</span>
             <span class="x-btn" ng-click="obj.mobile = '';obj.carrier = ''">X</span>
         </div>
-        <p style="margin: 0 0 10px 20px;">全国三网可充，到账立即生效</p>
-        <div class="tab-container" ng-init="showP=true">
-            <div class="mobile-detail" ng-click="showP=true;showG=false;">
-                <input type="radio" id="tabP" name="tab-PG" value="p" ng-checked="true"/>
-                <label for="tabP" class="tab-options"></label>
-                <span>省内流量</span>
-                <i class="cross-icon icon-minus-down"></i>
-                <a class="href hidden" ui-sref="detailP">详情</a>
-            </div>
-            <i class="divider"></i>
-            <div class="mobile-detail" ng-click="showG=true;showP=false;">
-                <input type="radio" id="tabG" name="tab-PG" value="g"/>
-                <label for="tabG" class="tab-options"></label>
-                <span>全国流量</span>
-                <i class="cross-icon icon-minus-down"></i>
-                <a class="href hidden" ui-sref="detailG">详情</a>
-            </div>
-        </div>
-        <!--省内流量-->
-        <div ng-if="showP" class="recharge-container">
-            <div class="recharge-item" ng-repeat="item in obj.dataP">
+        <!--流量项-->
+        <div class="recharge-container">
+            <div class="recharge-item" ng-repeat="item in obj.itemList">
                 <input type="radio" id="{{'recharge-radio-p'+$index}}" name="recharge-radio-p" value="{{$index}}" ng-checked="{{!$index}}"/>
                 <label for="{{'recharge-radio-p'+$index}}" class="options"></label>
-                <div ng-bind="item.title"></div>
-                <div ng-bind="item.price | RMBPrefix"></div>
+                <div ng-bind="item[0].face"></div>
+                <div ng-bind="item[0].price | RMBPrefix"></div>
             </div>
         </div>
-        <!--国内流量-->
-        <div ng-if="showG" class="recharge-container">
-            <div class="recharge-item" ng-repeat="item in obj.dataG">
-                <input type="radio" id="{{'recharge-radio-g'+$index}}" name="recharge-radio-g" value="{{$index}}" ng-checked="{{!$index}}"/>
-                <label for="{{'recharge-radio-g'+$index}}" class="options"></label>
-                <div ng-bind="item.title"></div>
-                <div ng-bind="item.price | RMBPrefix"></div>
+        <div class="recharge-btn-container">
+            <div class="recharge-btn-container-left">
+                <span class="recharge-amt">22.5元</span><i>本地</i>
+                <div class="recharge-desc">本地可用，即时生效，当月有效，每月限充10次，<span style="color: #ff0000;">平台送3元流量券</span></div>
             </div>
+            <button class="btn btn-recharge" ng-click="recharge('P')">
+                购买
+            </button>
         </div>
-        <div class="gap tc">
-            <button class="btn btn-sub-red" ng-click="recharge()">
-                充值
+        <div class="recharge-btn-container">
+            <div class="recharge-btn-container-left">
+                <span class="recharge-amt">22.5元</span><i>全国</i>
+                <div class="recharge-desc">全国可用，即时生效，当月有效，<span style="color: #ff0000;">平台送3元流量券</span></div>
+            </div>
+            <button class="btn btn-recharge" ng-click="recharge('G')">
+                购买
             </button>
         </div>
     </form>

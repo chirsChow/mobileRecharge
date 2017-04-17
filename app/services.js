@@ -295,7 +295,7 @@ define(function (require) {
                         subSource: params.subSource,
                         phone: params.phone
                     },
-                    url: "/flow_receive/getInitInfoForFlowNew"
+                    url: "/charge/getInitInfoForFlowNew"
                 });
             }
         };

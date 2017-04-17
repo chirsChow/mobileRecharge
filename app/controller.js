@@ -18,8 +18,7 @@ define(function (require) {
         $scope.obj = {
             mobile: '',
             carrier:'',//显示手机号运营商（中国移动）
-            dataP: [],//省内流量充值类型
-            dataG: [],//全国内流量充值类型
+            dataP: {}//选中的流量充值
         };
 
         var parse = utils.urlparse();
@@ -93,17 +92,21 @@ define(function (require) {
             $rootScope.loading = true;
             //请求参数
             var params = {
-                clientSource: clientSource,
-                subSource: subSource,
-                phone: $scope.obj.mobile
+                //clientSource: clientSource,
+                //subSource: subSource,
+                //phone: $scope.obj.mobile
+                clientSource: 3,
+                subSource: 'H5test',
+                phone: '13926585624'
             };
             app.get("InitInfo").get(params).success(function (response) {
                 $rootScope.loading = false;
                 if (response.isSuccess) {
                     console.log(response);
                     $scope.obj.carrier = $scope.obj.mobile == ''?'':response.carrier;
-                    $scope.obj.dataP = response.itemListP;
-                    $scope.obj.dataG = response.itemListG;
+                    $scope.obj.itemList = response.itemList;
+                    $scope.obj.dataP = response.itemList[0][0];
+                    $scope.obj.dataG = response.itemList[0][1];
                 } else {
                     utils.toast(response.retMsg);
                 }
@@ -112,21 +115,21 @@ define(function (require) {
             });
         }
         getInitInfo();
-        ////省内流量充值类型
-        //function loadP(carrieroperator) {
-        //    if (!carrieroperator || carrieroperator == '') {
-        //        carrieroperator = 'ChinaMobile';
-        //    }
-        //    $scope.obj.dataP = app.get("rechargeTypeService").get(carrieroperator, 'P');
-        //}
-        //
-        ////全国流量充值类型
-        //function loadG(carrieroperator) {
-        //    if (!carrieroperator || carrieroperator == '') {
-        //        carrieroperator = 'ChinaMobile';
-        //    }
-        //    $scope.obj.dataG = app.get("rechargeTypeService").get(carrieroperator, 'G');
-        //}
+        //省内流量充值类型
+        function loadP(carrieroperator) {
+            if (!carrieroperator || carrieroperator == '') {
+                carrieroperator = 'ChinaMobile';
+            }
+            $scope.obj.dataP = app.get("rechargeTypeService").get(carrieroperator, 'P');
+        }
+
+        //全国流量充值类型
+        function loadG(carrieroperator) {
+            if (!carrieroperator || carrieroperator == '') {
+                carrieroperator = 'ChinaMobile';
+            }
+            $scope.obj.dataG = app.get("rechargeTypeService").get(carrieroperator, 'G');
+        }
         //loadP();
         //loadG();
         //解决一加手机在顺手付打开H5时第一次不能加载完成的问题

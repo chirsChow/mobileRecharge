@@ -29,7 +29,7 @@ define(['app'],function (app) {
 				if (input == null || typeof(input) == "undefined") {
 					return "";
 				}
-				return "\u00A5" + " " +input;
+				return input + "元";
 			};
 		});
 });

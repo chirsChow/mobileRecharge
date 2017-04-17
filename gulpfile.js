@@ -19,11 +19,8 @@ var config = {
 	//proxyUrl:'http://10.118.200.154:8081'//李顺
 	//proxyUrl:'http://10.118.200.27:8081'//胡正强
 	//proxyUrl:'http://10.118.192.186:9000'//王小平
-	//proxyUrl:'http://rap.taobao.org/'
-	proxyUrl:'http://flowpay.mmflow.cn:9000'
+	proxyUrl:'http://flowpay.mmflow.cn:9000/'
 };
-
-var context = '/flow_receive'; // requests with this path will be proxied
 
 // configure proxy middleware options
 var options = {
@@ -31,20 +28,20 @@ var options = {
 	// changeOrigin: true,      // needed for virtual hosted sites
 	// ws: true,                // proxy websockets
 	pathRewrite: {
-		//'/api' : '/mockjsdata/16508/'
-		'/flow_receive': '/flow_receive'
+		'/charge': '/api',
+		'/front': '/front'
 	}
+	// proxyTable: {
+	//     // when request.headers.host == 'dev.localhost:3000',
+	//     // override target 'http://www.example.org' to 'http://localhost:8000'
+	//     'dev.localhost:3000' : 'http://localhost:8000'
+	// }
 };
 
 var proxyMiddleware = require('http-proxy-middleware');
-var proxy = proxyMiddleware(context, options);
+var proxy = proxyMiddleware('/charge', options);
+var proxy2 = proxyMiddleware('/front', options);
 
-// 语法检查
-// gulp.task('jshint', function() {
-// 	gulp.src('app/**/*.js')
-// 		.pipe(jshint())
-// 		.pipe(jshint.reporter('default'));
-// });
 //编译sass
 gulp.task('sass', function(){
 	return gulp.src('app/styles/scss/app.scss')
@@ -155,19 +152,20 @@ gulp.task('wiredep',function(){
 gulp.task('serve',['sass'],function(){
 	browserSync({
 	    notify: false,
-	    port: 9003,
+	    port: 9002,
 	    server: {
 			baseDir: ['app'],
 			routes: {
 				'/bower_components': 'bower_components'
 			}
 	    },
-	    middleware: [proxy]
+	    middleware: [proxy,proxy2]
 	});
 
 	gulp.watch([
 	    'app/**/*.html',
-	    'app/*.js',
+	    'app/scripts/**/*.js',
+	    'app/components/**/*.js',
 	    'app/images/**/*',
 	    'app/styles/**/*'
 	]).on('change', reload);
@@ -187,7 +185,7 @@ gulp.task('serve:dist',function(){
 
 	gulp.watch([
 	    config.dist+'/**/*.html',
-	    config.dist+'/app/*.js',
+	    config.dist+'/scripts/**/*.js',
 	    config.dist+'/images/**/*',
 	    config.dist+'/styles/**/*'
 	]).on('change', reload());
