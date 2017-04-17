@@ -306,19 +306,7 @@ define(function (require) {
             create: function (params) {
                 return $http({
                     method: 'POST',
-                    data: {
-                        clientSource: params.clientSource,
-                        subSource: params.subSource,
-                        phone: params.phone,
-                        itemId: params.itemId,	//产品编号	String	M	基础价格ID
-                        price: params.price,	//产品价格	Float	M	如3.75，表示3.75元
-                        itemPrice: params.itemPrice,	//产品名称	String	M	如30M,1G
-                        resultUrl: params.resultUrl,	//充值完成后跳转URL	String	O	跳转时会带上orderId参数
-                        openid:params.openid,
-                        type: params.type,//流量使用范围限制
-                        areaLimit: params.areaLimit,//充值地限制
-                        timeLimit: params.timeLimit//充值时间限制
-                    },
+                    data: params,
                     url: "/charge/createOrderForFlow"
                 });
             }
