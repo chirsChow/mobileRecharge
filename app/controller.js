@@ -19,7 +19,7 @@ define(function (require) {
             mobile: '',
             carrier:'',//显示手机号运营商（中国移动）
             model:'',
-            selectedItem: []//选中的流量充值
+            selectedItem: null//选中的流量充值
         };
 
         var parse = utils.urlparse();
@@ -104,8 +104,10 @@ define(function (require) {
                     console.log(response);
                     $scope.obj.carrier = $scope.obj.mobile == ''?'':response.carrier;
                     $scope.obj.itemList = response.itemList;
-                    for(var i in response.itemList){
-                        $scope.select(response.itemList[i]);
+                    for (var i in response.itemList) {
+                        if (!$scope.obj.selectedItem) {
+                            $scope.select(response.itemList[i]);
+                        }
                         break;
                     }
                 } else {
