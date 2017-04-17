@@ -28,13 +28,9 @@ define(function (require) {
 
         $scope.select = function (item) {
             $scope.obj.selectedItem = item;
-            if ($scope.obj.selectedItem[0]) {
-                var desc0 = $scope.obj.selectedItem[0].simpleDesc;
-                $scope.obj.selectedItem[0].simpleDesc = eval("'" + desc0 + "'");
-            }
-            if ($scope.obj.selectedItem[1]) {
-                var desc1 = $scope.obj.selectedItem[1].simpleDesc;
-                $scope.obj.selectedItem[1].simpleDesc = eval("'" + desc1 + "'");
+            for (var i = 0; i < $scope.obj.selectedItem.length; i++) {
+                var desc = $scope.obj.selectedItem[i].simpleDesc;
+                $scope.obj.selectedItem[i].simpleDesc = eval("'" + desc + "'");
             }
         };
         
@@ -98,12 +94,9 @@ define(function (require) {
             $rootScope.loading = true;
             //请求参数
             var params = {
-                //clientSource: clientSource,
-                //subSource: subSource,
-                //phone: $scope.obj.mobile
-                clientSource: 3,
-                subSource: 'H5test',
-                phone: '13926585624'
+                clientSource: clientSource,
+                subSource: subSource,
+                phone: $scope.obj.mobile
             };
             app.get("InitInfo").get(params).success(function (response) {
                 $rootScope.loading = false;
