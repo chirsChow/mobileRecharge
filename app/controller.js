@@ -58,9 +58,13 @@ define(function (require) {
                 subSource: subSource,
                 phone: $scope.obj.mobile,
                 itemId: item.itemId,	//产品编号	String	M	基础价格ID
-                price: item.price,	//产品价格	Float	M	如3.75，表示3.75元
+                itemPrice: item.price,	//产品价格	Float	M	如3.75，表示3.75元
                 face: item.face,	//产品名称	String	M	如30M,1G
-                resultUrl: location.href	//充值完成后跳转URL	String	O	跳转时会带上orderId参数
+                openid:'',
+                resultUrl: location.href,	//充值完成后跳转URL	String	O	跳转时会带上orderId参数
+                type: item.type,//流量使用范围限制
+                areaLimit: item.areaLimit,//充值地限制
+                timeLimit: item.timeLimit//充值时间限制
             };
             app.get("CreateOrder").create(params).success(function (response) {
                 $rootScope.loading = false;
