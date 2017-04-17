@@ -104,10 +104,11 @@ define(function (require) {
                     console.log(response);
                     $scope.obj.carrier = $scope.obj.mobile == ''?'':response.carrier;
                     $scope.obj.itemList = response.itemList;
+                    if ($scope.obj.selectedItem) {
+                        return;
+                    }
                     for (var i in response.itemList) {
-                        if (!$scope.obj.selectedItem) {
-                            $scope.select(response.itemList[i]);
-                        }
+                        $scope.select(response.itemList[i]);
                         break;
                     }
                 } else {
