@@ -96,7 +96,7 @@ define(function (require) {
             var params = {
                 clientSource: clientSource,
                 subSource: subSource,
-                phone: $scope.obj.mobile
+                phone: $scope.obj.mobile||'13926585624'
             };
             app.get("InitInfo").get(params).success(function (response) {
                 $rootScope.loading = false;
