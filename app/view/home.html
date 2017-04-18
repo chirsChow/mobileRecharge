@@ -12,8 +12,8 @@
         <!--流量项-->
         <div class="recharge-container">
             <div class="recharge-item" ng-repeat="item in obj.itemList">
-                <input type="radio" id="{{'recharge-radio-p'+$index}}" name="recharge-radio-p" value="{{$index}}" ng-checked="{{!$index}}" ng-model="obj.model" ng-change="select(item)"/>
-                <label for="{{'recharge-radio-p'+$index}}" class="options"></label>
+                <input type="radio" id="{{'recharge-radio-'+$index}}" name="recharge-radio" value="{{$index}}" ng-checked="{{!$index}}" ng-model="obj.model" ng-change="select(item)"/>
+                <label for="{{'recharge-radio-'+$index}}" class="options"></label>
                 <div ng-bind="item[0].face"></div>
                 <div ng-bind="item[0].price | RMBPrefix"></div>
             </div>

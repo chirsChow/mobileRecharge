@@ -18,7 +18,7 @@ define(function (require) {
         $scope.obj = {
             mobile: '',
             carrier:'',//显示手机号运营商（中国移动）
-            model:'',
+            model:'0',//初始选择第一个
             selectedItem: null//选中的流量充值
         };
 
@@ -92,21 +92,23 @@ define(function (require) {
         };
 
         $scope.getInitInfo = function () {
-            if ($scope.obj.mobile == '' || $scope.obj.mobile.length === 11) {
+            var _mobile = $scope.obj.mobile;
+            if (_mobile == '' || _mobile && _mobile.length === 11) {
                 $rootScope.loading = true;
                 //请求参数
                 var params = {
                     clientSource: clientSource,
                     subSource: subSource,
-                    phone: $scope.obj.mobile || '13926585624'
+                    phone: _mobile || '13926585624'
                 };
                 app.get("InitInfo").get(params).success(function (response) {
                     $rootScope.loading = false;
                     if (response.isSuccess) {
                         console.log(response);
-                        $scope.obj.carrier = $scope.obj.mobile == '' ? '' : response.carrier;
+                        $scope.obj.carrier = _mobile == '' ? '' : response.carrier;
                         $scope.obj.itemList = response.itemList;
                         //取第一次项为默认选中项
+                        $scope.obj.model = '0';
                         for (var i in response.itemList) {
                             $scope.select(response.itemList[i]);
                             break;
