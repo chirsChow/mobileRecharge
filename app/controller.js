@@ -17,7 +17,7 @@ define(function (require) {
         };
         $scope.obj = {
             mobile: '',
-            carrier:'',//显示手机号运营商（中国移动）
+            carrier:'',//显示手机号运营商
             model:'0',//初始选择第一个
             selectedItem: null//选中的流量充值
         };
