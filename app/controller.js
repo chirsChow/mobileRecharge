@@ -106,9 +106,7 @@ define(function (require) {
                         console.log(response);
                         $scope.obj.carrier = $scope.obj.mobile == '' ? '' : response.carrier;
                         $scope.obj.itemList = response.itemList;
-                        if ($scope.obj.selectedItem) {
-                            return;
-                        }
+                        //取第一次项为默认选中项
                         for (var i in response.itemList) {
                             $scope.select(response.itemList[i]);
                             break;
