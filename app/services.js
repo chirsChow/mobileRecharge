@@ -306,7 +306,19 @@ define(function (require) {
             create: function (params) {
                 return $http({
                     method: 'POST',
-                    data: params,
+                    data: {
+                        clientSource: params.clientSource,
+                        subSource: params.subSource,
+                        phone: params.phone,
+                        itemId: params.itemId,
+                        itemPrice: params.itemPrice,
+                        face: params.face,
+                        openid: params.openid,
+                        resultUrl: encodeURIComponent(params.resultUrl),
+                        type: params.type,//流量使用范围限制
+                        areaLimit: params.areaLimit,//充值地限制
+                        timeLimit: params.timeLimit//充值时间限制
+                    },
                     url: "/charge/createOrderForFlow"
                 });
             }

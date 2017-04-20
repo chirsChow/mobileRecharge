@@ -68,11 +68,32 @@ define(function (require) {
             };
             app.get("CreateOrder").create(params).success(function (response) {
                 $rootScope.loading = false;
-                if (response.isSuccess) {
+                if (response.status === '0000') {
                     console.log(response);
-                    window.location.href = "http://www.baidu.com";
-                } else {
-                    utils.toast(response.retMsg);
+                    window.location.href = response.payUrl || "http://www.baidu.com";
+                }
+                switch (response.status) {
+                    case "-1"://	异常
+                        utils.toast(response.retMsg || "系统异常");
+                        break;
+                    case "0001"://	流量包不存在
+                        utils.toast(response.retMsg || "流量包不存在");
+                        break;
+                    case "0002"://	此渠道不存在此流量包
+                        utils.toast(response.retMsg || "此渠道不存在此流量包");
+                        break;
+                    case "0003"://	流量包价格不正确
+                        utils.toast(response.retMsg || "流量包价格不正确");
+                        break;
+                    case "0004"://	提交支付失败
+                        utils.toast(response.retMsg || "提交支付失败");
+                        break;
+                    case "0005"://	流量包不存在
+                        utils.toast(response.retMsg || "系统异常");
+                        break;
+                    default :
+                        utils.toast(response.retMsg || "系统异常");
+                        break;
                 }
             }).error(function () {
                 $state.go('error');
@@ -99,7 +120,7 @@ define(function (require) {
                 var params = {
                     clientSource: clientSource,
                     subSource: subSource,
-                    phone: _mobile
+                    phone: _mobile || "15813848805"
                 };
                 app.get("InitInfo").get(params).success(function (response) {
                     $rootScope.loading = false;
