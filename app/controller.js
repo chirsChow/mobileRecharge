@@ -99,13 +99,13 @@ define(function (require) {
                 var params = {
                     clientSource: clientSource,
                     subSource: subSource,
-                    phone: _mobile || '13926585624'
+                    phone: _mobile
                 };
                 app.get("InitInfo").get(params).success(function (response) {
                     $rootScope.loading = false;
+                    console.log(response);
+                    $scope.obj.carrier = response.carrier;
                     if (response.isSuccess) {
-                        console.log(response);
-                        $scope.obj.carrier = _mobile == '' ? '' : response.carrier;
                         $scope.obj.itemList = response.itemList;
                         //取第一次项为默认选中项
                         $scope.obj.model = '0';

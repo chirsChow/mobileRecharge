@@ -73,3 +73,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.name
+.idea/encodings.xml
+.idea/mobileRecharge.iml
+.idea/workspace.xml
+.idea/vcs.xml
