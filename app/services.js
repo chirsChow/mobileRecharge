@@ -314,10 +314,10 @@ define(function (require) {
                         itemPrice: params.itemPrice,
                         face: params.face,
                         openid: params.openid,
-                        resultUrl: params.resultUrl,
-                        type: params.type,//流量使用范围限制
-                        areaLimit: params.areaLimit,//充值地限制
-                        timeLimit: params.timeLimit//充值时间限制
+                        resultUrl: encodeURIComponent(params.resultUrl),
+                        type: params.type,
+                        areaLimit: params.areaLimit,
+                        timeLimit: params.timeLimit
                     },
                     url: "/charge/createOrderForFlow"
                 });
