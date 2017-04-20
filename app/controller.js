@@ -70,7 +70,8 @@ define(function (require) {
                 $rootScope.loading = false;
                 if (response.status === '0000') {
                     console.log(response);
-                    window.location.href = response.payUrl || "http://www.baidu.com";
+                    window.location.href = response.payUrl;
+                    return;
                 }
                 switch (response.status) {
                     case "-1"://	异常
@@ -89,7 +90,7 @@ define(function (require) {
                         utils.toast(response.retMsg || "提交支付失败");
                         break;
                     case "0005"://	流量包不存在
-                        utils.toast(response.retMsg || "系统异常");
+                        utils.toast(response.retMsg || "流量包不存在");
                         break;
                     default :
                         utils.toast(response.retMsg || "系统异常");

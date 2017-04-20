@@ -314,7 +314,7 @@ define(function (require) {
                         itemPrice: params.itemPrice,
                         face: params.face,
                         openid: params.openid,
-                        resultUrl: encodeURIComponent(params.resultUrl),
+                        resultUrl: params.resultUrl,
                         type: params.type,//流量使用范围限制
                         areaLimit: params.areaLimit,//充值地限制
                         timeLimit: params.timeLimit//充值时间限制
