@@ -10,7 +10,7 @@ define(function (require) {
     //手机充值专区
     app.controller('homeCtrl', ['$scope', '$rootScope', '$state', 'utils', function ($scope, $rootScope, $state, utils) {
         $scope.goBack = function () {
-            //app.get('closeWindow')();
+            window.history.back();
         };
         window.onBack = function () {
             $scope.goBack();

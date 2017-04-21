@@ -1,0 +1,1 @@
+define(function(require,exports,module){var r=require("angular-async-loader");require("angular-ui-router");var app=angular.module("app",["ui.router"]);r.configure(app),module.exports=app});
