@@ -21,7 +21,7 @@
         <div ng-repeat="o in obj.selectedItem" class="recharge-btn-container">
             <div class="recharge-btn-container-left">
                 <span class="recharge-amt">{{o.price}}元</span><i>{{o.type == 1?'本地':'全国'}}</i>
-                <div class="recharge-desc">{{o.simpleDesc}}，<span style="color: #ff0000;">平台送3元流量券</span></div>
+                <div class="recharge-desc">{{o.simpleDesc}}</div>
             </div>
             <button class="btn btn-recharge" ng-click="recharge(o.type)">
                 购买
