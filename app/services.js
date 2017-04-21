@@ -18,7 +18,7 @@ define(function (require) {
                         pageSize: pageSize,
                         phone: phone
                     },
-                    url: "/front/getHistory"
+                    url: "/charge/front/getHistory"
                 });
             }
         };
@@ -72,7 +72,7 @@ define(function (require) {
                     data: {
                         orderId: orderId
                     },
-                    url: "/front/orderInfo"
+                    url: "/charge/front/orderInfo"
                 });
             }
         };
