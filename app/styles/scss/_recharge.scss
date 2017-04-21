@@ -183,7 +183,7 @@
   line-height: 30px;
   margin: 2px;
   color: $mobileRecharge;
-  @include border-radius(5px);
+  @include border-radius(4px);
   border:1px solid $mobileRecharge;
   background-color: #fff;
   &:disabled {
