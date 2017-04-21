@@ -144,23 +144,7 @@ define(function (require) {
             }
         };
         $scope.getInitInfo();
-        //省内流量充值类型
-        function loadP(carrieroperator) {
-            if (!carrieroperator || carrieroperator == '') {
-                carrieroperator = 'ChinaMobile';
-            }
-            $scope.obj.dataP = app.get("rechargeTypeService").get(carrieroperator, 'P');
-        }
 
-        //全国流量充值类型
-        function loadG(carrieroperator) {
-            if (!carrieroperator || carrieroperator == '') {
-                carrieroperator = 'ChinaMobile';
-            }
-            $scope.obj.dataG = app.get("rechargeTypeService").get(carrieroperator, 'G');
-        }
-        //loadP();
-        //loadG();
         //解决一加手机在顺手付打开H5时第一次不能加载完成的问题
         if (utils.browser().onePlus && !sessionStorage.getItem('onceReload')) {
             window.location.reload();
