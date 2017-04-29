@@ -25,6 +25,8 @@ define(function (require) {
         var parse = utils.urlparse();
         var clientSource = parse['clientSource'];//渠道来源
         var subSource = parse['subSource'];//渠道子编号
+        $scope.obj.mobile = parse['phone'];//带过来的手机号
+
 
         $scope.select = function (item) {
             $scope.obj.selectedItem = item;
@@ -61,7 +63,7 @@ define(function (require) {
                 itemPrice: item.price,	//产品价格	Float	M	如3.75，表示3.75元
                 face: item.face,	//产品名称	String	M	如30M,1G
                 openid:'',
-                resultUrl: location.href,	//充值完成后跳转URL	String	O	跳转时会带上orderId参数
+                resultUrl: location.href.substr(0,location.href.indexOf('#'))+"#home",	//充值完成后跳转URL	String	O	跳转时会带上orderId参数
                 type: item.type,//流量使用范围限制
                 areaLimit: item.areaLimit,//充值地限制
                 timeLimit: item.timeLimit//充值时间限制

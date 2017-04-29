@@ -7,7 +7,7 @@ define(function (require) {
      * carrieroperator:['ChinaMobile', 'ChinaUnion', 'ChinaTelcom']
      */
     app
-    //³äÖµÀúÊ·¼ÇÂ¼ÁÐ±í
+    //ï¿½ï¿½Öµï¿½ï¿½Ê·ï¿½ï¿½Â¼ï¿½Ð±ï¿½
     .service('rechargeListService', ['$http', function ($http) {
         return {
             get: function (page, pageSize, phone) {
@@ -18,12 +18,12 @@ define(function (require) {
                         pageSize: pageSize,
                         phone: phone
                     },
-                    url: "/charge/front/getHistory"
+                    url: "/api/front/getHistory"
                 });
             }
         };
     }])
-    //¸ù¾ÝÊÖ»úºÅ»ñÈ¡Á÷Á¿ÀàÐÍÊý¾Ý£¬Ã»ÓÐÊÖ»úºÅÔò·µ»ØÄ¬ÈÏÊý¾Ý
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Å»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½Ã»ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     .service('InitInfo', ['$http', function ($http) {
         return {
             get: function (params) {
@@ -34,12 +34,12 @@ define(function (require) {
                         subSource: params.subSource,
                         phone: params.phone
                     },
-                    url: "/charge/getInitInfoForFlowNew"
+                    url: "/api/getInitInfoForFlowNew"
                 });
             }
         };
     }])
-    //´´½¨¶©µ¥¡¾·µ»ØÄÚÈÝ¡¿Ìø×ªµ½Ö§¸¶Ò³Ãæ£¬Ö§¸¶ºó·µ»Øµ½½á¹ûÒ³Ãæ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½ï¿½ï¿½×ªï¿½ï¿½Ö§ï¿½ï¿½Ò³ï¿½æ£¬Ö§ï¿½ï¿½ï¿½ó·µ»Øµï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½
     .service('CreateOrder', ['$http', function ($http) {
         return {
             create: function (params) {
@@ -58,12 +58,12 @@ define(function (require) {
                         areaLimit: params.areaLimit,
                         timeLimit: params.timeLimit
                     },
-                    url: "/charge/createOrderForFlow"
+                    url: "/api/createOrderForFlow"
                 });
             }
         };
     }])
-    //»ñÈ¡¶©µ¥ÐÅÏ¢
+    //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
     .service('OrderInfo', ['$http', function ($http) {
         return {
             get: function (orderId) {
@@ -72,7 +72,7 @@ define(function (require) {
                     data: {
                         orderId: orderId
                     },
-                    url: "/charge/front/orderInfo"
+                    url: "/api/front/orderInfo"
                 });
             }
         };
