@@ -104,10 +104,9 @@
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
   width: 92%;
-  margin: 0 auto;
+  margin: 10px auto;
   justify-content: flex-start;
   align-items: center;
-  padding: 10px 0;
   .recharge-item{
     width: 28%;
     height: 60px;
@@ -121,7 +120,7 @@
     & div:first-of-type{
       font-size: 18px;
       font-weight: 500;
-      margin-bottom: 5px;
+      margin: 5px 0;
     }
     div{
       line-height: 20px;

@@ -7,7 +7,6 @@ define(function (require) {
      * carrieroperator:['ChinaMobile', 'ChinaUnion', 'ChinaTelcom']
      */
     app
-    //��ֵ��ʷ��¼�б�
     .service('rechargeListService', ['$http', function ($http) {
         return {
             get: function (page, pageSize, phone) {
@@ -23,7 +22,6 @@ define(function (require) {
             }
         };
     }])
-    //�����ֻ��Ż�ȡ�����������ݣ�û���ֻ����򷵻�Ĭ������
     .service('InitInfo', ['$http', function ($http) {
         return {
             get: function (params) {
@@ -39,7 +37,6 @@ define(function (require) {
             }
         };
     }])
-    //�����������������ݡ���ת��֧��ҳ�棬֧���󷵻ص����ҳ��
     .service('CreateOrder', ['$http', function ($http) {
         return {
             create: function (params) {
@@ -63,7 +60,6 @@ define(function (require) {
             }
         };
     }])
-    //��ȡ������Ϣ
     .service('OrderInfo', ['$http', function ($http) {
         return {
             get: function (orderId) {
