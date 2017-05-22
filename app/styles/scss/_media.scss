@@ -6,15 +6,3 @@
     html{font-size: 62.5*(320/375)*1%;}
 
 }
-
-@media screen and (max-width:320px){
-    .input-label {
-        @include input-label(70px);
-    }
-}
-
-@media screen and (min-width:376px){
-    .trade-merch {
-        width: 75%;
-    }
-}
