@@ -63,7 +63,7 @@ define(function (require) {
                 itemPrice: item.price,	//产品价格	Float	M	如3.75，表示3.75元
                 face: item.face,	//产品名称	String	M	如30M,1G
                 openid:'',
-                resultUrl: location.href.substr(0,location.href.indexOf('#'))+"#home",	//充值完成后跳转URL	String	O	跳转时会带上orderId参数
+                resultUrl: location.origin + "?clientSource=" + clientSource + "&subSource" + subSource + "&phone=" + $scope.obj.mobile + "&",
                 type: item.type,//流量使用范围限制
                 areaLimit: item.areaLimit,//充值地限制
                 timeLimit: item.timeLimit//充值时间限制
@@ -128,7 +128,7 @@ define(function (require) {
                 app.get("InitInfo").get(params).success(function (response) {
                     $rootScope.loading = false;
                     console.log(response);
-                    $scope.obj.carrier = response.carrier;
+                    $scope.obj.carrier = response.carrier;//运营商
                     if (response.isSuccess) {
                         $scope.obj.itemList = response.itemList;
                         //取第一次项为默认选中项

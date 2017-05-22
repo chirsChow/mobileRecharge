@@ -16,10 +16,8 @@ var pkg = require('./package.json');
 var config = {
 	base:'app',
 	dist:'dist/'+pkg.version,
-	//proxyUrl:'http://10.118.200.154:8081'//李顺
-	//proxyUrl:'http://10.118.200.27:8081'//胡正强
-	//proxyUrl:'http://10.118.192.186:9000'//王小平
-	proxyUrl:'http://flowpay.mmflow.cn:9000/'
+	// proxyUrl:'http://flowpay.mmflow.cn:9000/',
+	proxyUrl:'http://rapapi.org/mockjsdata/16508',
 };
 
 // configure proxy middleware options
@@ -28,8 +26,7 @@ var options = {
 	// changeOrigin: true,      // needed for virtual hosted sites
 	// ws: true,                // proxy websockets
 	pathRewrite: {
-		'/charge': '/api',
-		'/front': '/front'
+		'/api': '/api'
 	}
 	// proxyTable: {
 	//     // when request.headers.host == 'dev.localhost:3000',
@@ -39,8 +36,7 @@ var options = {
 };
 
 var proxyMiddleware = require('http-proxy-middleware');
-var proxy = proxyMiddleware('/charge', options);
-var proxy2 = proxyMiddleware('/front', options);
+var proxy = proxyMiddleware('/api', options);
 
 //编译sass
 gulp.task('sass', function(){
@@ -159,7 +155,7 @@ gulp.task('serve',['sass'],function(){
 				'/bower_components': 'bower_components'
 			}
 	    },
-	    middleware: [proxy,proxy2]
+	    middleware: [proxy]
 	});
 
 	gulp.watch([
