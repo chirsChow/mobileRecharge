@@ -37,6 +37,15 @@
             "show": true,
             "startDate": "2017-05-10 00:00:00",
             "expiringDate": "2017-06-10 00:00:00"
+        },
+        {
+            "type": "1",
+            "name": "adv1.jpg",
+            "link": "http://www.baidu.com",
+            "closable": true,
+            "show": false,
+            "startDate": "2017-05-10 00:00:00",
+            "expiringDate": "2017-06-10 00:00:00"
         }
     ],
     "bottom": [

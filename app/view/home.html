@@ -42,6 +42,12 @@
                 <div ng-bind="item[0].price | RMBPrefix"></div>
             </div>
         </div>
+        <!--中部广告-->
+        <div class="adv adv-middle" ng-repeat="adv in advData.middle" ng-if="adv.show">
+            <img ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
+            <i ng-if="adv.closable" ng-click="closeAdv('middle', $index)">关闭</i>
+        </div>
+        <!--购买选项-->
         <div ng-repeat="o in obj.selectedItem" class="recharge-btn-container">
             <div class="recharge-btn-container-left">
                 <span class="recharge-amt">{{o.price}}元</span><i>{{o.type == 1?'本地':'全国'}}</i>
