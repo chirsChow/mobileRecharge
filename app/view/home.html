@@ -1,6 +1,26 @@
 <!-- 充值专区 -->
 <head-title ng-hide="hidePage" show-backbtn="true" go-back="goBack()" app-title="流量行家"></head-title>
-<div class="full-h oa">
+<div class="full-h oa rel">
+    <!--顶部广告-->
+    <div class="adv adv-top" ng-repeat="adv in advData.top" ng-if="adv.show">
+        <img ng-src="./adv/{{adv.name}}" />
+        <i ng-click="closeAdv('top', $index)">关闭</i>
+    </div>
+    <!--底部广告-->
+    <div class="adv adv-bottom" ng-repeat="adv in advData.bottom" ng-if="adv.show">
+        <img ng-src="./adv/{{adv.name}}" />
+        <i ng-click="closeAdv('bottom', $index)">关闭</i>
+    </div>
+    <!--左边广告-->
+    <div class="adv adv-left" ng-repeat="adv in advData.left" ng-if="adv.show">
+        <img ng-src="./adv/{{adv.name}}" />
+        <i ng-click="closeAdv('left', $index)">关闭</i>
+    </div>
+    <!--右边广告-->
+    <div class="adv adv-right" ng-repeat="adv in advData.right" ng-if="adv.show">
+        <img ng-src="./adv/{{adv.name}}" />
+        <i ng-click="closeAdv('right', $index)">关闭</i>
+    </div>
     <form id="form" name="form" class="form oa" novalidate>
         <div class="mobile-input">
             <input type="tel"

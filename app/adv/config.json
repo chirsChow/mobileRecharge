@@ -1,0 +1,75 @@
+{
+    "top": [
+        {
+            "type": "1",
+            "name": "adv1.jpg",
+            "link": "http://www.baidu.com",
+            "closable": true,
+            "show": true,
+            "startDate": "2017-05-10 00:00:00",
+            "expiringDate": "2017-06-10 00:00:00"
+        },
+        {
+            "type": "2",
+            "name": "adv2.jpg",
+            "link": "http://www.sina.com",
+            "closable": true,
+            "show": true,
+            "startDate": "2017-06-01 00:00:00",
+            "expiringDate": "2017-06-10 00:00:00"
+        },
+        {
+            "type": "1",
+            "name": "adv3.jpg",
+            "link": "http://www.qq.com",
+            "closable": true,
+            "show": true,
+            "startDate": "2017-05-10 00:00:00",
+            "expiringDate": "2017-06-10 00:00:00"
+        }
+    ],
+    "middle": [
+        {
+            "type": "1",
+            "name": "adv1.jpg",
+            "link": "http://www.baidu.com",
+            "closable": true,
+            "show": true,
+            "startDate": "2017-05-10 00:00:00",
+            "expiringDate": "2017-06-10 00:00:00"
+        }
+    ],
+    "bottom": [
+        {
+            "type": "1",
+            "name": "adv2.jpg",
+            "link": "http://www.baidu.com",
+            "closable": true,
+            "show": true,
+            "startDate": "2017-05-10 00:00:00",
+            "expiringDate": "2017-06-10 00:00:00"
+        }
+    ],
+    "left": [
+        {
+            "type": "1",
+            "name": "adv5.png",
+            "link": "http://www.baidu.com",
+            "closable": true,
+            "show": true,
+            "startDate": "2017-05-10 00:00:00",
+            "expiringDate": "2017-06-10 00:00:00"
+        }
+    ],
+    "right": [
+        {
+            "type": "1",
+            "name": "adv6.jpg",
+            "link": "http://www.baidu.com",
+            "closable": true,
+            "show": true,
+            "startDate": "2017-05-10 00:00:00",
+            "expiringDate": "2017-06-10 00:00:00"
+        }
+    ]
+}

@@ -8,7 +8,7 @@ define(function (require) {
     require('./utils');
 
     //手机充值专区
-    app.controller('homeCtrl', ['$scope', '$rootScope', '$state', 'utils', function ($scope, $rootScope, $state, utils) {
+    app.controller('homeCtrl', ['$scope', '$rootScope', '$state', '$http', 'utils', function ($scope, $rootScope, $state, $http, utils) {
         $scope.goBack = function () {
             window.history.back();
         };
@@ -146,6 +146,26 @@ define(function (require) {
             }
         };
         $scope.getInitInfo();
+        //加载广告数据
+        $scope.advData = {"top":[],"middle":[],"bottom":[],"left":[],"right":[]};
+        $http({url: 'adv/config.json'}).then(function(data) {
+            var _data = data.data;
+            var curTime = new Date();//当前时间
+            for (var position in $scope.advData) {
+                for (var i = 0; i < _data[position].length; i++) {
+                    if (_data[position][i].show && curTime > new Date(Date.parse(_data[position][i].startDate)) && curTime < new Date(Date.parse(_data[position][i].expiringDate))) {
+                        $scope.advData[position].push(_data[position][i]);
+                    }
+                }
+            }
+            console.log($scope.advData);
+        }, function(error) {
+            alert("广告配置文件出错");
+        });
+        //关闭广告
+        $scope.closeAdv = function(position, index){
+            $scope.advData[position][index].show = false;
+        };
 
         //解决一加手机在顺手付打开H5时第一次不能加载完成的问题
         if (utils.browser().onePlus && !sessionStorage.getItem('onceReload')) {

@@ -1,0 +1,10 @@
+{
+	"position": "top", //"top顶部","middle中部","bottom底部","left中左边","right中右边"
+	"type": "1", //"1图片广告","2文字广告"
+	"name": "welcome.png", //图片文件名称或者文字广告名称
+	"link": "http://www.baidu.com", //点击跳转的连接地址
+	"closable": true, //是否可以关闭广告
+	"show": true, //是否显示该广告
+	"startDate": "2017-05-10 00:00:00",//广告开始时间，自动显示
+	"expiringDate": "2017-06-10 00:00:00", //广告到期时间，注:到期后自动不再显示
+}

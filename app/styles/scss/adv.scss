@@ -1,0 +1,56 @@
+.adv {
+    position: relative;
+    img {
+        width: 100%;
+    }
+    i {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 30px;
+        height: 20px;
+        background-color: rgba(0, 0, 0, .2);
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+        padding: 2px;
+    }
+}
+
+//顶部广告
+.adv-top {}
+
+//底部广告
+.adv-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+//左边广告
+.adv-left {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+    -webkit-transform: translate(0,-50%);
+    width: 80px;
+    z-index: 2;
+}
+
+//右边广告
+.adv-right {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0,-50%);
+    -webkit-transform: translate(0,-50%);
+    width: 80px;
+    z-index: 2;
+}
+
+#form{
+	z-index:1;
+}
