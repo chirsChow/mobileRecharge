@@ -3,23 +3,27 @@
 <div class="full-h oa rel">
     <!--顶部广告-->
     <div class="adv adv-top" ng-repeat="adv in advData.top" ng-if="adv.show">
-        <img ng-src="./adv/{{adv.name}}" />
-        <i ng-click="closeAdv('top', $index)">关闭</i>
+        <img ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
+        <i ng-if="adv.closable" ng-click="closeAdv('top', $index)">关闭</i>
     </div>
     <!--底部广告-->
     <div class="adv adv-bottom" ng-repeat="adv in advData.bottom" ng-if="adv.show">
-        <img ng-src="./adv/{{adv.name}}" />
-        <i ng-click="closeAdv('bottom', $index)">关闭</i>
+        <img ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
+        <i ng-if="adv.closable" ng-click="closeAdv('bottom', $index)">关闭</i>
     </div>
     <!--左边广告-->
-    <div class="adv adv-left" ng-repeat="adv in advData.left" ng-if="adv.show">
-        <img ng-src="./adv/{{adv.name}}" />
-        <i ng-click="closeAdv('left', $index)">关闭</i>
+    <div class="adv-slide adv-left">
+        <div class="adv" ng-repeat="adv in advData.left" ng-if="adv.show">
+        <img ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
+        <i ng-if="adv.closable" ng-click="closeAdv('left', $index)">关闭</i>
+        </div>
     </div>
     <!--右边广告-->
-    <div class="adv adv-right" ng-repeat="adv in advData.right" ng-if="adv.show">
-        <img ng-src="./adv/{{adv.name}}" />
-        <i ng-click="closeAdv('right', $index)">关闭</i>
+    <div class="adv-slide adv-right">
+        <div class="adv" ng-repeat="adv in advData.right" ng-if="adv.show">
+            <img ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
+            <i ng-if="adv.closable" ng-click="closeAdv('right', $index)">关闭</i>
+        </div>
     </div>
     <form id="form" name="form" class="form oa" novalidate>
         <div class="mobile-input">

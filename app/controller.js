@@ -8,7 +8,7 @@ define(function (require) {
     require('./utils');
 
     //手机充值专区
-    app.controller('homeCtrl', ['$scope', '$rootScope', '$state', '$http', 'utils', function ($scope, $rootScope, $state, $http, utils) {
+    app.controller('homeCtrl', ['$scope', '$rootScope', '$state', '$http', '$window', 'utils', function ($scope, $rootScope, $state, $http, $window, utils) {
         $scope.goBack = function () {
             window.history.back();
         };
@@ -165,6 +165,12 @@ define(function (require) {
         //关闭广告
         $scope.closeAdv = function(position, index){
             $scope.advData[position][index].show = false;
+        };
+        //点击广告跳转
+        $scope.link = function(link) {
+            if (link && link != '') {
+                $window.location = link;
+            }
         };
 
         //解决一加手机在顺手付打开H5时第一次不能加载完成的问题

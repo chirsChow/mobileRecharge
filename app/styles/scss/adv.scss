@@ -28,27 +28,28 @@
     width: 100%;
     z-index: 2;
 }
+//侧边广告公用样式
+.adv-slide{
+	display:flex;
+	display:-webkit-flex;
+	flex-direction:row;
+	justify-content:flex-start;
+	width: 80px;
+	position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    -webkit-transform: translate(0,-50%);
+    z-index: 2;
+}
 
 //左边广告
 .adv-left {
-    position: absolute;
-    top: 50%;
     left: 0;
-    transform: translate(0,-50%);
-    -webkit-transform: translate(0,-50%);
-    width: 80px;
-    z-index: 2;
 }
 
 //右边广告
 .adv-right {
-    position: absolute;
-    top: 50%;
     right: 0;
-    transform: translate(0,-50%);
-    -webkit-transform: translate(0,-50%);
-    width: 80px;
-    z-index: 2;
 }
 
 #form{
