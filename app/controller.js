@@ -123,7 +123,7 @@ define(function (require) {
                 var params = {
                     clientSource: clientSource,
                     subSource: subSource,
-                    phone: _mobile || "15813848805"
+                    phone: _mobile
                 };
                 app.get("InitInfo").get(params).success(function (response) {
                     $rootScope.loading = false;
@@ -158,7 +158,6 @@ define(function (require) {
                     }
                 }
             }
-            console.log($scope.advData);
         }, function(error) {
             alert("广告配置文件出错");
         });
