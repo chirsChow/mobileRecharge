@@ -68,7 +68,8 @@
   -webkit-box-pack:justify;
 }
 .flex-box {
-  @include display-flex;
+  display:flex;
+  display:-webkit-flex;
   justify-content: space-between;
   align-items: center;
 }
@@ -83,7 +84,7 @@
   font-size: 1.7rem;
   line-height: 42px;
   width: 100%;
-  @include border-radius(5px);
+  border-radius:5px;
 }
 .btn-sub{
   background-color: $contentYellow;
