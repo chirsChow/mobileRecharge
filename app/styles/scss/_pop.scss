@@ -16,50 +16,6 @@
   transition: tranform 400ms ease-in,opacity 300ms ease-in;
 }
 
-
-@mixin article-page {
-  position: fixed;
-  top:0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-  width: 100%;
-  height: 100%;
-
-  display:-webkit-box;
-  -webkit-box-pack:center;
-  -webkit-box-align:center;
-  -webkit-box-orient:vertical;
-}
-/*  弹出的带遮罩层的 半页面  */
-.pop {
-  @include article-page;
-  background:rgba(0,0,0,.5);
-  @at-root .bb_body2 {
-    background:#fff;
-    width: 90%;
-    padding: 20px 20px 0;
-    margin: auto;
-    >p{
-      margin-bottom: 10px;
-    }
-    @at-root .bb_buttons2 {
-      @extend .tc;
-      color: #2390ed;
-      line-height: 44px;
-      border-top: 1px solid #edeef0;
-      font-size: 1.4rem;
-    }
-
-  }
-}
-/*  滑进滑出的 全页面 */
-.slide {
-  @include article-page;
-  background: #fff;
-}
-
 /* All styles below are for the default template. */
 .cg-busy-mask {
   //background-color: rgba(0, 0, 0, .2);

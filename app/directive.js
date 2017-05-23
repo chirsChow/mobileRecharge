@@ -47,21 +47,7 @@ define(function (require) {
                 template:
                 '<div class="cg-busy-default-wrapper" ng-show="loading">' +
                     '<div class="cg-busy-mask"></div>' +
-                        //'<div class="cg-busy-default-spinner">' +
-                            //'<img src="images/ring-alt.gif" style="width:30px;height:30px;" alt="loading" />' +
                            '<iframe class="cg-busy-default-spinner" src="images/loading.svg" frameborder="0"></iframe>' +
-                            //'<div class="loadEffect">'+
-                            //    '<span></span>'+
-                            //    '<span></span>'+
-                            //    '<span></span>'+
-                            //    '<span></span>'+
-                            //    '<span></span>'+
-                            //    '<span></span>'+
-                            //    '<span></span>'+
-                            //    '<span></span>'+
-                            //'</div>'+
-                            //'<p ng-bind="loadingTips"></p>' +//loading中的提示语
-                        //'</div>' +
                     '</div>' +
                 '</div>'
             };
