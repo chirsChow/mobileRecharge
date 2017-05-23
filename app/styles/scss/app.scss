@@ -2,8 +2,6 @@
 @import "variate";
 //reset browser default style
 @import "reset";
-@import "mixins_ionic";
-
 
 // iconfont font
 @import "font";
@@ -12,9 +10,6 @@
 
 //base unit  style class
 @import "common";
-
-//pwd-box style
-@import "_mixins_ionic";
 
 //component style
 @import "pop";
