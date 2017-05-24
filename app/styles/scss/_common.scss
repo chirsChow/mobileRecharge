@@ -44,9 +44,6 @@
   overflow: hidden;
 }
 
-.success-color {
-  color: $successColor;
-}
 .ing-color {
   color: $ingColor;
 }
@@ -58,8 +55,6 @@
 .emphasis{color: $emphasis;}
 .block{padding: 0 5%;}
 .content-red{color: $contentRed;}
-.content-red1{color: $contentRed1;}
-.divider-font{color: $fcDivider;}
 .bold{font-weight: 600;}
 .dot-blue{color:#5fa5de;}
 .txt-line{font-size: 2.6rem;font-weight:800;color:#fff;word-spacing:2px;letter-spacing: 2px;margin-top: 20px;}
@@ -87,7 +82,7 @@
   border-radius:5px;
 }
 .btn-sub{
-  background-color: $contentYellow;
+  background-color: $mobileRecharge;
   color: #6d2926;
   width: 90%;
   box-shadow: 0 2px #ca2117;
@@ -96,7 +91,7 @@
     opacity: .4;
   }
   &:active{
-    background-color: $contentYellowActive;
+    background-color: $mobileRecharge;
   }
 }
 
