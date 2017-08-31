@@ -78,3 +78,7 @@ $RECYCLE.BIN/
 .idea/mobileRecharge.iml
 .idea/workspace.xml
 .idea/vcs.xml
+
+.idea/inspectionProfiles/Project_Default.xml
+
+.idea/modules.xml
