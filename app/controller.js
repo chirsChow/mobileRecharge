@@ -52,7 +52,6 @@ define(function (require) {
         };
         //前端向流量平台发起请求
         function createOrder(item) {
-            console.log(item);
             $rootScope.loading = true;
             //请求参数
             var params = {
@@ -158,7 +157,7 @@ define(function (require) {
                     }
                 }
             }
-        }, function(error) {
+        }, function() {
             alert("广告配置文件出错");
         });
         //关闭广告
@@ -171,7 +170,10 @@ define(function (require) {
                 $window.location = link;
             }
         };
-
+        //判断是否是网络图片地址
+        $scope.hasScheme = function (imgUrl) {
+            return imgUrl && (imgUrl.indexOf("http") !== -1 || imgUrl.indexOf("https") !== -1);
+        };
         //解决一加手机在顺手付打开H5时第一次不能加载完成的问题
         if (utils.browser().onePlus && !sessionStorage.getItem('onceReload')) {
             window.location.reload();

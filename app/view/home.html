@@ -3,25 +3,29 @@
 <div class="full-h oa rel">
     <!--顶部广告-->
     <div class="adv adv-top" ng-repeat="adv in advData.top" ng-if="adv.show">
-        <img ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
+        <img ng-if="hasScheme(adv.name)" ng-src="{{adv.name}}" ng-click="link(adv.link)" />
+        <img ng-if="!hasScheme(adv.name)" ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
         <i ng-if="adv.closable" ng-click="closeAdv('top', $index)">关闭</i>
     </div>
     <!--底部广告-->
     <div class="adv adv-bottom" ng-repeat="adv in advData.bottom" ng-if="adv.show">
-        <img ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
+        <img ng-if="hasScheme(adv.name)" ng-src="{{adv.name}}" ng-click="link(adv.link)" />
+        <img ng-if="!hasScheme(adv.name)" ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
         <i ng-if="adv.closable" ng-click="closeAdv('bottom', $index)">关闭</i>
     </div>
     <!--左边广告-->
     <div class="adv-slide adv-left">
         <div class="adv" ng-repeat="adv in advData.left" ng-if="adv.show">
-        <img ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
+        <img ng-if="hasScheme(adv.name)" ng-src="{{adv.name}}" ng-click="link(adv.link)" />
+        <img ng-if="!hasScheme(adv.name)" ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
         <i ng-if="adv.closable" ng-click="closeAdv('left', $index)">关闭</i>
         </div>
     </div>
     <!--右边广告-->
     <div class="adv-slide adv-right">
         <div class="adv" ng-repeat="adv in advData.right" ng-if="adv.show">
-            <img ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
+            <img ng-if="hasScheme(adv.name)" ng-src="{{adv.name}}" ng-click="link(adv.link)" />
+            <img ng-if="!hasScheme(adv.name)" ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
             <i ng-if="adv.closable" ng-click="closeAdv('right', $index)">关闭</i>
         </div>
     </div>
@@ -44,7 +48,8 @@
         </div>
         <!--中部广告-->
         <div class="adv adv-middle" ng-repeat="adv in advData.middle" ng-if="adv.show">
-            <img ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
+            <img ng-if="hasScheme(adv.name)" ng-src="{{adv.name}}" ng-click="link(adv.link)" />
+            <img ng-if="!hasScheme(adv.name)" ng-src="./adv/{{adv.name}}" ng-click="link(adv.link)" />
             <i ng-if="adv.closable" ng-click="closeAdv('middle', $index)">关闭</i>
         </div>
         <!--购买选项-->

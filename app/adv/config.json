@@ -6,17 +6,17 @@
             "link": "http://www.baidu.com",
             "closable": true,
             "show": true,
-            "startDate": "2017-05-10 00:00:00",
-            "expiringDate": "2017-06-10 00:00:00"
+            "startDate": "2017-08-10 00:00:00",
+            "expiringDate": "2018-06-10 00:00:00"
         },
         {
-            "type": "2",
-            "name": "adv2.jpg",
+            "type": "1",
+            "name": "http://pic.58pic.com/58pic/15/27/41/60Y58PIC8mq_1024.jpg",
             "link": "http://www.sina.com",
             "closable": true,
             "show": true,
-            "startDate": "2017-06-01 00:00:00",
-            "expiringDate": "2017-06-10 00:00:00"
+            "startDate": "2017-08-01 00:00:00",
+            "expiringDate": "2019-06-10 00:00:00"
         },
         {
             "type": "1",
@@ -24,8 +24,8 @@
             "link": "http://www.qq.com",
             "closable": true,
             "show": true,
-            "startDate": "2017-05-10 00:00:00",
-            "expiringDate": "2017-06-10 00:00:00"
+            "startDate": "2017-08-10 00:00:00",
+            "expiringDate": "2018-06-10 00:00:00"
         }
     ],
     "middle": [
@@ -35,8 +35,8 @@
             "link": "http://www.baidu.com",
             "closable": true,
             "show": true,
-            "startDate": "2017-05-10 00:00:00",
-            "expiringDate": "2017-06-10 00:00:00"
+            "startDate": "2017-08-10 00:00:00",
+            "expiringDate": "2019-06-10 00:00:00"
         },
         {
             "type": "1",
@@ -44,19 +44,19 @@
             "link": "http://www.baidu.com",
             "closable": true,
             "show": false,
-            "startDate": "2017-05-10 00:00:00",
-            "expiringDate": "2017-06-10 00:00:00"
+            "startDate": "2017-08-10 00:00:00",
+            "expiringDate": "2019-06-10 00:00:00"
         }
     ],
     "bottom": [
         {
             "type": "1",
-            "name": "adv2.jpg",
+            "name": "http://pic.qiantucdn.com/58pic/13/65/58/17v58PICdeY_1024.jpg",
             "link": "http://www.baidu.com",
             "closable": true,
             "show": true,
             "startDate": "2017-05-10 00:00:00",
-            "expiringDate": "2017-06-10 00:00:00"
+            "expiringDate": "2018-06-10 00:00:00"
         }
     ],
     "left": [
@@ -66,8 +66,8 @@
             "link": "http://www.baidu.com",
             "closable": true,
             "show": false,
-            "startDate": "2017-05-10 00:00:00",
-            "expiringDate": "2017-06-10 00:00:00"
+            "startDate": "2017-12-10 00:00:00",
+            "expiringDate": "2018-06-10 00:00:00"
         },
         {
             "type": "1",
@@ -76,7 +76,7 @@
             "closable": true,
             "show": false,
             "startDate": "2017-05-10 00:00:00",
-            "expiringDate": "2017-06-10 00:00:00"
+            "expiringDate": "2019-06-10 00:00:00"
         }
     ],
     "right": [
@@ -86,8 +86,8 @@
             "link": "http://www.baidu.com",
             "closable": true,
             "show": false,
-            "startDate": "2017-05-10 00:00:00",
-            "expiringDate": "2017-06-10 00:00:00"
+            "startDate": "2017-12-10 00:00:00",
+            "expiringDate": "2018-06-10 00:00:00"
         },
         {
             "type": "1",
@@ -95,8 +95,8 @@
             "link": "http://www.baidu.com",
             "closable": true,
             "show": false,
-            "startDate": "2017-05-10 00:00:00",
-            "expiringDate": "2017-06-10 00:00:00"
+            "startDate": "2017-11-10 00:00:00",
+            "expiringDate": "2019-06-10 00:00:00"
         }
     ]
 }
