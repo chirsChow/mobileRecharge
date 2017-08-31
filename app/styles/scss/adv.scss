@@ -1,63 +1,85 @@
 .adv {
-    position: relative;
-    img {
-        width: 100%;
-    }
-    i {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 30px;
-        height: 20px;
-        background-color: rgba(0, 0, 0, .2);
-        color: #fff;
-        font-size: 12px;
-        text-align: center;
-        padding: 2px;
-    }
+  position: relative;
+  img {
+    width: 100%;
+  }
+  i {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, .2);
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    padding: 2px;
+  }
 }
 
 //顶部广告
-.adv-top {}
+.adv-top {
+}
 
 //底部广告
 .adv-bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
 }
+
 //侧边广告公用样式
-.adv-slide{
-	display:flex;
-	display:-webkit-flex;
-	flex-direction:row;
-	justify-content:flex-start;
-	width: 80px;
-	position: absolute;
-    top: 50%;
-    transform: translate(0,-50%);
-    -webkit-transform: translate(0,-50%);
-    z-index: 2;
+.adv-slide {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 80px;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+  z-index: 2;
 }
 
 //中间广告
-.adv-middle{
-	width:88%;
-	margin: 0 auto;
+.adv-middle {
+  width: 88%;
+  margin: 0 auto;
 }
 
 //左边广告
 .adv-left {
-    left: 0;
+  left: 0;
 }
 
 //右边广告
 .adv-right {
-    right: 0;
+  right: 0;
 }
 
-#form{
-	z-index:1;
+#form {
+  z-index: 1;
+}
+
+#wrap {
+  height: auto;
+  min-height: 100%;
+}
+
+#main {
+  overflow: auto;
+  padding-bottom: 40px;
+}
+
+/* 必须使用和footer相同的高度 */
+.footer {
+  position: relative;
+  margin-top: -40px; /* footer高度的负值 */
+  text-align: center;
+  width: 100%;
+  height: 40px;
+  clear: both;
 }

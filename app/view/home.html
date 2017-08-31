@@ -1,6 +1,7 @@
 <!-- 充值专区 -->
 <head-title ng-hide="hidePage" show-backbtn="true" go-back="goBack()" app-title="流量行家"></head-title>
-<div class="full-h oa rel">
+<div id="wrap">
+    <div id="main" class="clearfix">
     <!--顶部广告-->
     <div class="adv adv-top" ng-repeat="adv in advData.top" ng-if="adv.show">
         <img ng-if="hasScheme(adv.name)" ng-src="{{adv.name}}" ng-click="link(adv.link)" />
@@ -63,10 +64,11 @@
             </button>
         </div>
     </form>
-    <div class="footer">
-        <!--<a ui-sref="rechargeList" class="href">充值记录</a>-->
-        <a ui-sref="tips" class="href">温馨提示</a>
-        &nbsp;|&nbsp;<a ui-sref="question" class="href">常见问题</a>
     </div>
+</div>
+<div class="footer">
+    <!--<a ui-sref="rechargeList" class="href">充值记录</a>-->
+    <a ui-sref="tips" class="href">温馨提示</a>
+    &nbsp;|&nbsp;<a ui-sref="question" class="href">常见问题</a>
 </div>
 
