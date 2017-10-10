@@ -64,31 +64,6 @@ define(['require', 'app'], function (require, app) {
                         endpoints[kvs[0]] = kvs.length > 1 ? kvs[1] : '';
                     }
                     return endpoints;
-                },
-                checkMobile: function (telphone) {
-                    var isChinaMobile = /^134[0-8]\d{7}$|^(?:13[5-9]|147|15[0-27-9]|178|18[2-478])\d{8}$/;
-                    var isChinaUnion  = /^(?:13[0-2]|145|15[56]|176|18[56])\d{8}$/;
-                    var isChinaTelcom = /^(?:133|153|177|18[019])\d{8}$/; //1349号段
-                    var isOtherTelphone   = /^170([059])\d{7}$/;//其他运营商
-                    if (telphone.length !== 11) {
-                        return {'status': false, 'msg': '未检测到正确的手机号码', name: ''};
-                    } else {
-                        if (isChinaMobile.test(telphone)) {
-                            return {'status': true, 'msg': '中国移动', name: 'ChinaMobile'};
-                        }
-                        else if (isChinaUnion.test(telphone)) {
-                            return {'status': true, 'msg': '中国联通', name: 'ChinaUnion'};
-                        }
-                        else if (isChinaTelcom.test(telphone)) {
-                            return {'status': true, 'msg': '中国电信', name: 'ChinaTelcom'};
-                        }
-                        else if (isOtherTelphone.test(telphone)) {
-                            return {'status': true, 'msg': '其他', name: 'other'};
-                        }
-                        else {
-                            return {'status': false, 'msg': '未检测到正确的手机号码', name: ''};
-                        }
-                    }
                 }
             };
         }])
