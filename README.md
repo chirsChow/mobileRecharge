@@ -1,3 +1,3 @@
 # mobileRecharge
 手机充值
-![Alt text](https://github.com/chenyufeng1991/NewsClient/raw/master/Screenshots/2.png)
+![Alt text](https://github.com/chirsChow/mobileRecharge/blob/master/525258a5-58cc-4dce-ade3-fe33b48f9920.png)
